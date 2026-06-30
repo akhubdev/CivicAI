@@ -1,0 +1,782 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>CivicAI | Dashboard</title>
+
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+</head>
+
+<body>
+
+    <!-- Background -->
+
+    <div class="bg-layer">
+
+        <div class="grid-layer"></div>
+
+        <div class="blur blur-blue"></div>
+
+        <div class="blur blur-purple"></div>
+
+    </div>
+
+    <!-- Main Layout -->
+
+    <div class="dashboard-layout">
+
+        <!-- PART 2 -->
+
+        <aside class="sidebar">
+
+    <!-- Logo -->
+
+    <div class="sidebar-logo">
+
+        <i class="fa-solid fa-shield-halved"></i>
+
+        <span>CivicAI</span>
+
+    </div>
+
+    <!-- Navigation -->
+
+    <nav class="sidebar-menu">
+
+        <a href="/home">
+
+            <i class="fa-solid fa-house"></i>
+
+            Home
+
+        </a>
+
+        <a href="/upload">
+
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+
+            Upload Issue
+
+        </a>
+
+        <a class="active">
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            Dashboard
+
+        </a>
+
+        <a href="/history">
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            History
+
+        </a>
+
+        <a href="/analytics">
+
+            <i class="fa-solid fa-chart-pie"></i>
+
+            Analytics
+
+        </a>
+
+        <a href="/profile">
+
+            <i class="fa-solid fa-user"></i>
+
+            Profile
+
+        </a>
+
+        <a href="/settings">
+
+            <i class="fa-solid fa-gear"></i>
+
+            Settings
+
+        </a>
+
+    </nav>
+
+    <!-- AI Status Card -->
+
+    <div class="sidebar-card">
+
+        <div class="status-dot"></div>
+
+        <h3>
+
+            Gemini AI Online
+
+        </h3>
+
+        <p>
+
+            Real-time civic issue analysis is active and monitoring new reports.
+
+        </p>
+
+    </div>
+
+</aside>
+
+<!-- ==========================
+        MAIN CONTENT
+========================== -->
+
+<main class="main-content">
+
+    <!-- PART 3 -->
+
+    <!-- ==========================
+        TOP BAR
+========================== -->
+
+<header class="top-bar">
+
+    <div class="top-left">
+
+        <h1>
+
+            Dashboard
+
+        </h1>
+
+        <p>
+
+            Welcome back! Here's your CivicAI overview.
+
+        </p>
+
+    </div>
+
+    <div class="top-right">
+
+        <div class="ai-status">
+
+            <span class="status-dot"></span>
+
+            Gemini AI Active
+
+        </div>
+
+        <button class="profile-btn">
+
+            <i class="fa-solid fa-user"></i>
+
+        </button>
+
+    </div>
+
+</header>
+
+<!-- ==========================
+        HERO
+========================== -->
+
+<section class="hero-banner">
+
+    <div class="hero-content">
+
+        <h2>
+
+            Smart City Intelligence Dashboard
+
+        </h2>
+
+        <p>
+
+            Monitor civic issues, AI predictions, department performance and
+            real-time analytics from one unified dashboard.
+
+        </p>
+
+        <div class="hero-actions">
+
+            <a href="/upload" class="hero-btn primary">
+
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                Upload New Issue
+
+            </a>
+
+            <a href="/analytics" class="hero-btn secondary">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                View Analytics
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-ai">
+
+        <div class="dashboard-orb">
+
+            <div class="ring ring-one"></div>
+
+            <div class="ring ring-two"></div>
+
+            <div class="ring ring-three"></div>
+
+            <div class="center-orb">
+
+                AI
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+        PART 4
+========================== -->
+
+<!-- ==========================
+        STATISTICS
+========================== -->
+
+<section class="stats-grid">
+
+    <!-- Total Reports -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon blue">
+
+            <i class="fa-solid fa-file-lines"></i>
+
+        </div>
+
+        <div class="stat-info">
+
+            <h4>Total Reports</h4>
+
+            <h2>{{ total_reports }}</h2>
+
+            <span>+18% This Month</span>
+
+        </div>
+
+    </div>
+
+    <!-- Critical Issues -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon red">
+
+            <i class="fa-solid fa-triangle-exclamation"></i>
+
+        </div>
+
+        <div class="stat-info">
+
+            <h4>Critical Issues</h4>
+
+            <h2>{{ critical_issues }}</h2>
+
+            <span>Needs Immediate Action</span>
+
+        </div>
+
+    </div>
+
+    <!-- Pending -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon orange">
+
+            <i class="fa-solid fa-hourglass-half"></i>
+
+        </div>
+
+        <div class="stat-info">
+
+            <h4>Pending Cases</h4>
+
+            <h2>{{ pending_reports }}</h2>
+
+            <span>Awaiting Resolution</span>
+
+        </div>
+
+    </div>
+
+    <!-- Resolved -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon green">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+        </div>
+
+        <div class="stat-info">
+
+            <h4>Resolved</h4>
+
+            <h2>{{ resolved_reports }}</h2>
+
+            <span>Successfully Closed</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+        PART 5
+========================== -->
+
+
+<!-- ==========================
+        ANALYTICS SECTION
+========================== -->
+
+<section class="analytics-section">
+
+    <!-- Left -->
+
+    <div class="chart-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <h3>
+
+                    Issue Overview
+
+                </h3>
+
+                <p>
+
+                    AI generated issue statistics
+
+                </p>
+
+            </div>
+
+            <button class="filter-btn">
+
+                This Month
+
+            </button>
+
+        </div>
+
+        <div class="chart-placeholder">
+
+            <canvas id="issueChart"></canvas>
+
+        </div>
+
+        <script>
+            window.chartData = {
+                critical: {{ severity_counts["Critical"] }},
+                high: {{ severity_counts["High"] }},
+                medium: {{ severity_counts["Medium"] }},
+                low: {{ severity_counts["Low"] }}
+                };
+        </script>
+
+    </div>
+
+    <!-- Right -->
+
+    <div class="activity-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                AI Activity
+
+            </h3>
+
+        </div>
+
+        <div class="activity-list">
+            {% if recent_activity %}
+
+    {% for activity in recent_activity %}
+
+    <div class="activity-item">
+
+        <div class="activity-icon blue">
+
+            <i class="fa-solid fa-brain"></i>
+
+        </div>
+
+        <div>
+
+            <h4>
+
+                {{ activity.issue_type }}
+
+            </h4>
+
+            <p>
+
+                {{ activity.created_at }}
+
+            </p>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+    <div class="activity-item">
+
+        <div>
+
+            <h4>
+
+                No Recent Activity
+
+            </h4>
+
+            <p>
+
+                Upload an issue to get started.
+
+            </p>
+
+        </div>
+
+    </div>
+
+{% endif %}
+
+</div>
+
+</div>
+    
+
+</section>
+
+<!-- ==========================
+        PART 6
+========================== -->
+
+<!-- ==========================
+        RECENT REPORTS
+========================== -->
+
+<section class="reports-section">
+
+    <div class="card-header">
+
+        <div>
+
+            <h3>
+
+                Recent AI Reports
+
+            </h3>
+
+            <p>
+
+                Latest civic issues analyzed by Gemini AI
+
+            </p>
+
+        </div>
+
+        <a href="/history" class="view-all-btn">
+
+            View All
+
+        </a>
+
+    </div>
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Issue</th>
+
+                    <th>Location</th>
+
+                    <th>Severity</th>
+
+                    <th>Status</th>
+
+                    <th>Date</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+{% if recent_reports %}
+
+    {% for report in recent_reports %}
+
+    <tr>
+
+        <td>{{ report.issue_type }}</td>
+
+        <td>{{ report.department }}</td>
+
+        <td>
+            <span class="severity {{ report.severity|lower }}">
+                {{ report.severity }}
+            </span>
+        </td>
+
+        <td>
+
+            {% if report.priority|lower in ['high', 'urgent'] %}
+
+                <span class="status pending">
+                    Pending
+                </span>
+
+            {% else %}
+
+                <span class="status resolved">
+                    Resolved
+                </span>
+
+            {% endif %}
+
+        </td>
+
+        <td>{{ report.created_at }}</td>
+
+    </tr>
+
+    {% endfor %}
+
+{% else %}
+
+<tr>
+
+    <td colspan="5" style="text-align:center; padding:25px;">
+        No reports available.
+    </td>
+
+</tr>
+
+{% endif %}
+
+</tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+        PART 7
+========================== -->
+
+<!-- ==========================
+        BOTTOM GRID
+========================== -->
+
+<section class="bottom-grid">
+
+    <!-- Department Performance -->
+
+    <div class="department-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                Department Performance
+
+            </h3>
+
+        </div>
+
+        <div class="department-list">
+
+            <div class="department-item">
+
+                <span>Municipal Corporation</span>
+
+                <strong>94%</strong>
+
+            </div>
+
+            <div class="department-item">
+
+                <span>Road & Transport</span>
+
+                <strong>87%</strong>
+
+            </div>
+
+            <div class="department-item">
+
+                <span>Water Supply</span>
+
+                <strong>82%</strong>
+
+            </div>
+
+            <div class="department-item">
+
+                <span>Electricity Board</span>
+
+                <strong>91%</strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- AI System Health -->
+
+    <div class="health-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                AI System Health
+
+            </h3>
+
+        </div>
+
+        <div class="health-items">
+
+            <div class="health-row">
+
+                <span>Gemini AI</span>
+
+                <span class="online">
+
+                    ● Online
+
+                </span>
+
+            </div>
+
+            <div class="health-row">
+
+                <span>Database</span>
+
+                <span class="online">
+
+                    ● Connected
+
+                </span>
+
+            </div>
+
+            <div class="health-row">
+
+                <span>Server</span>
+
+                <span class="online">
+
+                    ● Running
+
+                </span>
+
+            </div>
+
+            <div class="health-row">
+
+                <span>PDF Engine</span>
+
+                <span class="online">
+
+                    ● Ready
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+        FOOTER
+========================== -->
+
+<footer class="dashboard-footer">
+
+    <p>
+
+        © 2026 CivicAI • Powered by Gemini AI • Built for Vibe2Ship Hackathon
+
+    </p>
+
+</footer>
+
+</main>
+
+    </div>
+
+    <!-- JS -->
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+</body>
+
+</html>

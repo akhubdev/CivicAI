@@ -1,0 +1,564 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>CivicAI | Government Report</title>
+
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/report.css') }}">
+
+</head>
+
+<body>
+
+    <div class="report-container">
+
+        <!-- PART 2 -->
+
+        <!-- ==========================
+        GOVERNMENT HEADER
+========================== -->
+
+<header class="report-header">
+
+    <div class="gov-logo">
+
+        <i class="fa-solid fa-building-columns"></i>
+
+    </div>
+
+    <div class="header-content">
+
+        <h1>
+
+            CivicAI Smart Civic Issue Report
+
+        </h1>
+
+        <h2>
+
+            AI Generated Government Complaint Report
+
+        </h2>
+
+        <p>
+
+            Generated using Google Gemini AI • Vibe2Ship Hackathon
+
+        </p>
+
+    </div>
+
+    <div class="report-meta">
+
+        <div class="meta-item">
+
+            <span>
+
+                Report ID
+
+            </span>
+
+            <strong>
+
+                {{ report_id }}
+
+            </strong>
+
+        </div>
+
+        <div class="meta-item">
+
+            <span>
+
+                Generated On
+
+            </span>
+
+            <strong>
+
+                {{ report_date }}
+
+            </strong>
+
+        </div>
+
+    </div>
+
+</header>
+
+<hr class="report-divider">
+
+<!-- ==========================
+        CITIZEN DETAILS
+========================== -->
+
+<section class="citizen-section">
+
+    <h3>
+
+        Citizen Information
+
+    </h3>
+
+    <div class="citizen-grid">
+
+        <div>
+
+            <span>Name</span>
+
+            <strong>{{ citizen_name }}</strong>
+
+        </div>
+
+        <div>
+
+            <span>Email</span>
+
+            <strong>{{ citizen_email }}</strong>
+
+        </div>
+
+        <div>
+
+            <span>Location</span>
+
+            <strong>{{ location }}</strong>
+
+        </div>
+
+        <div>
+
+            <span>Department</span>
+
+            <strong>{{ department }}</strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+        PART 3
+========================== -->
+
+<!-- ==========================
+        ISSUE DETAILS
+========================== -->
+
+<section class="issue-section">
+
+    <div class="issue-info">
+
+        <h3>
+
+            Civic Issue Details
+
+        </h3>
+
+        <div class="issue-grid">
+
+            <div class="info-box">
+
+                <span>
+
+                    Issue Type
+
+                </span>
+
+                <strong>
+
+                    {{ issue_type }}
+
+                </strong>
+
+            </div>
+
+            <div class="info-box">
+
+                <span>
+
+                    Severity
+
+                </span>
+
+                <strong class="severity">
+
+                    {{ severity }}
+
+                </strong>
+
+            </div>
+
+            <div class="info-box">
+
+                <span>
+
+                    Priority
+
+                </span>
+
+                <strong>
+
+                    {{ priority }}
+
+                </strong>
+
+            </div>
+
+            <div class="info-box">
+
+                <span>
+
+                    Status
+
+                </span>
+
+                <strong>
+
+                    {{ status }}
+
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Uploaded Image -->
+
+    <div class="report-image">
+
+        <h3>
+
+            Uploaded Evidence
+
+        </h3>
+
+        <img
+            src="{{ image_path }}"
+            alt="Uploaded Image">
+
+    </div>
+
+</section>
+
+<!-- ==========================
+        AI ANALYSIS
+========================== -->
+
+<section class="analysis-section">
+
+    <h3>
+
+        Gemini AI Analysis Summary
+
+    </h3>
+
+    <div class="analysis-box">
+
+        {{ result }}
+
+    </div>
+
+</section>
+
+<!-- ==========================
+        PART 4
+========================== -->
+
+<!-- ==========================
+        AI RECOMMENDATION
+========================== -->
+
+<section class="recommendation-section">
+
+    <h3>
+
+        AI Recommended Action Plan
+
+    </h3>
+
+    <div class="recommendation-box">
+
+        {{ recommendation }}
+
+    </div>
+
+</section>
+
+<!-- ==========================
+        IMMEDIATE ACTION
+========================== -->
+
+<section class="action-plan">
+
+    <h3>
+
+        Immediate Action Required
+
+    </h3>
+
+    <div class="action-grid">
+
+        <div class="action-card">
+
+            <i class="fa-solid fa-triangle-exclamation"></i>
+
+            <h4>
+
+                Priority Level
+
+            </h4>
+
+            <p>
+
+                {{ priority }}
+
+            </p>
+
+        </div>
+
+        <div class="action-card">
+
+            <i class="fa-solid fa-building"></i>
+
+            <h4>
+
+                Responsible Department
+
+            </h4>
+
+            <p>
+
+                {{ department }}
+
+            </p>
+
+        </div>
+
+        <div class="action-card">
+
+            <i class="fa-solid fa-clock"></i>
+
+            <h4>
+
+                Expected Resolution
+
+            </h4>
+
+            <p>
+
+                {{ estimated_resolution }}
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+        OFFICIAL REMARKS
+========================== -->
+
+<section class="remarks-section">
+
+    <h3>
+
+        Official Remarks
+
+    </h3>
+
+    <div class="remarks-box">
+
+        This report has been automatically generated by CivicAI using
+        Google Gemini AI image analysis. The detected issue should be
+        verified by the concerned authority before final execution.
+        This report is intended to assist government departments in
+        faster identification and resolution of civic issues.
+
+    </div>
+
+</section>
+
+<!-- ==========================
+        PART 5
+========================== -->
+
+<!-- ==========================
+        DIGITAL SIGNATURE
+========================== -->
+
+<section class="signature-section">
+
+    <div class="signature-card">
+
+        <div class="signature-left">
+
+            <h3>
+
+                AI Digital Verification
+
+            </h3>
+
+            <p>
+
+                This report has been digitally generated and verified by
+                CivicAI using Google Gemini AI image analysis.
+
+            </p>
+
+            <div class="signature-box">
+
+                <h2>
+
+                    CivicAI
+
+                </h2>
+
+                <span>
+
+                    Authorized AI Verification System
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="signature-right">
+
+            <div class="qr-box">
+
+                <i class="fa-solid fa-qrcode"></i>
+
+                <p>
+
+                    QR Verification
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+        DOWNLOAD PDF
+========================== -->
+
+<section class="download-section">
+
+    <a href="{{ url_for('download_pdf', report_id=report_id) }}"
+       class="download-btn">
+
+        <i class="fa-solid fa-download"></i>
+
+        Download Official PDF Report
+
+    </a>
+
+</section>
+
+<!-- ==========================
+        DISCLAIMER
+========================== -->
+
+<section class="disclaimer-section">
+
+    <h3>
+
+        Disclaimer
+
+    </h3>
+
+    <p>
+
+        This report is automatically generated by CivicAI using
+        Google Gemini AI. It serves as an intelligent decision-support
+        document for civic authorities. Final verification and action
+        remain the responsibility of the concerned government department.
+
+    </p>
+
+</section>
+
+<!-- ==========================
+        FOOTER
+========================== -->
+
+<footer class="report-footer">
+
+    <div class="footer-left">
+
+        <strong>
+
+            CivicAI
+
+        </strong>
+
+        <span>
+
+            Smart Civic Intelligence Platform
+
+        </span>
+
+    </div>
+
+    <div class="footer-right">
+
+        <span>
+
+            Generated on: {{ report_date }}
+
+        </span>
+
+        <span>
+
+            Report ID: {{ report_id }}
+
+        </span>
+
+    </div>
+
+</footer>
+
+    </div>
+
+</body>
+
+</html>

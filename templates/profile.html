@@ -1,0 +1,742 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>CivicAI | Profile</title>
+
+<!-- Google Font -->
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<!-- Font Awesome -->
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<!-- CSS -->
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/profile.css') }}">
+
+</head>
+
+<body>
+
+<!-- Background -->
+
+<div class="bg-layer">
+
+<div class="grid-layer"></div>
+
+<div class="blur blur-blue"></div>
+
+<div class="blur blur-purple"></div>
+
+</div>
+
+<!-- Main Layout -->
+
+<div class="profile-layout">
+
+<!-- =====================================
+SIDEBAR
+===================================== -->
+
+<aside class="sidebar">
+
+    <!-- Logo -->
+
+    <div class="sidebar-logo">
+
+        <i class="fa-solid fa-shield-halved"></i>
+
+        <span>CivicAI</span>
+
+    </div>
+
+    <!-- Navigation -->
+
+    <nav class="sidebar-menu">
+
+        <a href="/home">
+
+            <i class="fa-solid fa-house"></i>
+
+            Home
+
+        </a>
+
+        <a href="/upload">
+
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+
+            Upload Issue
+
+        </a>
+
+        <a href="/dashboard">
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            Dashboard
+
+        </a>
+
+        <a href="/history">
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            History
+
+        </a>
+
+        <a href="/analytics">
+
+            <i class="fa-solid fa-chart-pie"></i>
+
+            Analytics
+
+        </a>
+
+        <a class="active">
+
+            <i class="fa-solid fa-user"></i>
+
+            Profile
+
+        </a>
+
+        <a href="/settings">
+
+            <i class="fa-solid fa-gear"></i>
+
+            Settings
+
+        </a>
+
+    </nav>
+
+    <!-- AI Status -->
+
+    <div class="sidebar-card">
+
+        <div class="status-dot"></div>
+
+        <h3>
+
+            Gemini AI Active
+
+        </h3>
+
+        <p>
+
+            Your profile is securely connected with CivicAI Cloud.
+
+        </p>
+
+    </div>
+
+</aside>
+
+<!-- =====================================
+MAIN CONTENT
+===================================== -->
+
+<main class="main-content">
+
+    
+<!-- =====================================
+TOP BAR
+===================================== -->
+
+<header class="top-bar">
+
+    <div class="top-left">
+
+        <h1>
+
+            My Profile
+
+        </h1>
+
+        <p>
+
+            Manage your CivicAI account and personal information.
+
+        </p>
+
+    </div>
+
+    <div class="top-right">
+
+        <div class="ai-status">
+
+            <span class="status-dot"></span>
+
+            Gemini AI Connected
+
+        </div>
+
+        <button class="edit-profile-btn">
+
+            <i class="fa-solid fa-pen"></i>
+
+            Edit Profile
+
+        </button>
+
+    </div>
+
+</header>
+
+<!-- =====================================
+PROFILE HERO
+===================================== -->
+
+<section class="profile-hero">
+
+    <div class="profile-card">
+
+        <div class="profile-avatar">
+
+            <img src="{{ url_for('static', filename='images/avatar.png') }}"
+                 alt="Profile">
+
+        </div>
+
+        <div class="profile-info">
+
+            <h2>
+
+                Akash Das
+
+            </h2>
+
+            <span class="profile-role">
+
+                AI & Data Analyst
+
+            </span>
+
+            <p>
+
+                Passionate about Artificial Intelligence, Machine Learning,
+                Data Analytics and Smart City Solutions.
+
+            </p>
+
+            <div class="profile-tags">
+
+                <span>Python</span>
+
+                <span>Flask</span>
+
+                <span>Machine Learning</span>
+
+                <span>Data Analytics</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================
+PERSONAL INFORMATION
+===================================== -->
+
+<section class="profile-grid">
+
+    <!-- Left Card -->
+
+    <div class="info-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                Personal Information
+
+            </h3>
+
+        </div>
+
+        <div class="info-list">
+
+            <div class="info-row">
+
+                <span>
+
+                    <i class="fa-solid fa-user"></i>
+
+                    Full Name
+
+                </span>
+
+                <strong>
+
+                    Akash Das
+
+                </strong>
+
+            </div>
+
+            <div class="info-row">
+
+                <span>
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    Email
+
+                </span>
+
+                <strong>
+
+                    akash@example.com
+
+                </strong>
+
+            </div>
+
+            <div class="info-row">
+
+                <span>
+
+                    <i class="fa-solid fa-phone"></i>
+
+                    Phone
+
+                </span>
+
+                <strong>
+
+                    +91 XXXXX XXXXX
+
+                </strong>
+
+            </div>
+
+            <div class="info-row">
+
+                <span>
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    Location
+
+                </span>
+
+                <strong>
+
+                    Angul, Odisha
+
+                </strong>
+
+            </div>
+
+            <div class="info-row">
+
+                <span>
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    Joined
+
+                </span>
+
+                <strong>
+
+                    June 2026
+
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Right Card -->
+
+    <div class="info-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                Professional Details
+
+            </h3>
+
+        </div>
+
+        <div class="info-list">
+
+            <div class="info-row">
+
+                <span>
+
+                    <i class="fa-solid fa-briefcase"></i>
+
+                    Role
+
+                </span>
+
+                <strong>
+
+                    AI & Data Analyst
+
+                </strong>
+
+            </div>
+
+            <div class="info-row">
+
+                <span>
+
+                    <i class="fa-solid fa-graduation-cap"></i>
+
+                    Education
+
+                </span>
+
+                <strong>
+
+                    B.Tech CSE
+
+                </strong>
+
+            </div>
+
+            <div class="info-row">
+
+                <span>
+
+                    <i class="fa-solid fa-building-columns"></i>
+
+                    University
+
+                </span>
+
+                <strong>
+
+                    BPUT Odisha
+
+                </strong>
+
+            </div>
+
+            <div class="info-row">
+
+                <span>
+
+                    <i class="fa-solid fa-code"></i>
+
+                    Primary Skills
+
+                </span>
+
+                <strong>
+
+                    Python • Flask • SQL
+
+                </strong>
+
+            </div>
+
+            <div class="info-row">
+
+                <span>
+
+                    <i class="fa-solid fa-award"></i>
+
+                    Experience
+
+                </span>
+
+                <strong>
+
+                    Fresher
+
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================
+PROFILE DASHBOARD
+===================================== -->
+
+<section class="profile-dashboard">
+
+    <!-- Left Side -->
+
+    <div class="dashboard-left">
+
+        <!-- AI Statistics -->
+
+        <div class="stats-card">
+
+            <div class="card-header">
+
+                <h3>
+
+                    AI Statistics
+
+                </h3>
+
+            </div>
+
+            <div class="stats-grid">
+
+                <div class="stat-box">
+
+                    <h2>128</h2>
+
+                    <span>Total Reports</span>
+
+                </div>
+
+                <div class="stat-box">
+
+                    <h2>94%</h2>
+
+                    <span>AI Accuracy</span>
+
+                </div>
+
+                <div class="stat-box">
+
+                    <h2>18</h2>
+
+                    <span>Critical Issues</span>
+
+                </div>
+
+                <div class="stat-box">
+
+                    <h2>96%</h2>
+
+                    <span>Resolved Rate</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Skills -->
+
+        <div class="skills-card">
+
+            <div class="card-header">
+
+                <h3>
+
+                    Technical Skills
+
+                </h3>
+
+            </div>
+
+            <div class="skills-list">
+
+                <span>Python</span>
+
+                <span>Flask</span>
+
+                <span>SQL</span>
+
+                <span>SQLite</span>
+
+                <span>Machine Learning</span>
+
+                <span>Data Analytics</span>
+
+                <span>HTML5</span>
+
+                <span>CSS3</span>
+
+                <span>JavaScript</span>
+
+                <span>GitHub</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Right Side -->
+
+    <div class="dashboard-right">
+
+        <div class="activity-card">
+
+            <div class="card-header">
+
+                <h3>
+
+                    Recent Activity
+
+                </h3>
+
+            </div>
+
+            <div class="activity-list">
+
+                <div class="activity-item">
+
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                    <div>
+
+                        <h4>
+
+                            Uploaded Road Damage Report
+
+                        </h4>
+
+                        <p>
+
+                            Today • 10:45 AM
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="activity-item">
+
+                    <i class="fa-solid fa-robot"></i>
+
+                    <div>
+
+                        <h4>
+
+                            Gemini AI Completed Analysis
+
+                        </h4>
+
+                        <p>
+
+                            Today • 10:46 AM
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="activity-item">
+
+                    <i class="fa-solid fa-file-pdf"></i>
+
+                    <div>
+
+                        <h4>
+
+                            PDF Report Generated
+
+                        </h4>
+
+                        <p>
+
+                            Yesterday
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="activity-item">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <div>
+
+                        <h4>
+
+                            Analytics Dashboard Visited
+
+                        </h4>
+
+                        <p>
+
+                            Yesterday
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================
+FOOTER
+===================================== -->
+
+<footer class="profile-footer">
+
+    <p>
+
+        © 2026 CivicAI • AI Powered Community Issue Intelligence Platform
+
+    </p>
+
+    <span>
+
+        Built with ❤️ using Flask • Gemini AI • SQLite
+
+    </span>
+
+</footer>
+
+</main>
+
+</div>
+
+<!-- =====================================
+JAVASCRIPT
+===================================== -->
+
+<script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+
+</body>
+
+</html>

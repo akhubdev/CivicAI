@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CivicAI | AI Powered Civic Intelligence</title>
+
+    <!-- Google Font -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/login.css') }}">
+
+</head>
+
+<body>
+
+    <!-- ===============================
+            Animated Background
+    ================================ -->
+
+    <div class="background">
+
+        <div class="grid"></div>
+
+        <div class="glow glow1"></div>
+
+        <div class="glow glow2"></div>
+
+        <div class="glow glow3"></div>
+
+    </div>
+
+    <!-- ===============================
+            Main Container
+    ================================ -->
+
+    <main class="login-container">
+
+        <!-- LEFT -->
+
+        <section class="left-section">
+
+            <!-- Logo -->
+
+            <div class="logo">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <h2>CivicAI</h2>
+
+            </div>
+
+            <!-- Badge -->
+
+            <div class="live-badge">
+
+                <span class="dot"></span>
+
+                AI Powered Civic Intelligence
+
+            </div>
+
+            <!-- Heading -->
+
+            <div class="hero-text">
+
+                <h1>
+
+                    Smart Civic Issue Detection
+
+                    <span>Powered by AI</span>
+
+                </h1>
+
+                <p>
+
+                    Upload civic issue images, let AI detect the
+                    problem, generate reports and help authorities
+                    take faster action.
+
+                </p>
+
+            </div>
+
+            <!-- AI Orb -->
+
+            <div class="orb-wrapper">
+
+                <div class="ring ring1"></div>
+
+                <div class="ring ring2"></div>
+
+                <div class="ring ring3"></div>
+
+                <div class="orb">
+
+                    AI
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- RIGHT -->
+
+        <section class="right-section">
+
+            <div class="login-card">
+
+                <div class="card-header">
+
+                    <h2>
+
+                        Welcome Back
+
+                    </h2>
+
+                    <p>
+
+                        Login to continue using CivicAI
+
+                    </p>
+
+                </div>
+
+                <!-- Login Form -->
+
+                <form id="loginForm">
+
+                    <!-- Email -->
+
+                    <div class="form-group">
+
+                        <label>
+
+                            Email Address
+
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="Enter email">
+
+                        </div>
+
+                    </div>
+
+                    <!-- Password -->
+
+                    <div class="form-group">
+
+                        <label>
+
+                            Password
+
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Enter password">
+
+                            <i
+                                class="fa-solid fa-eye"
+                                id="togglePassword">
+
+                            </i>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Remember -->
+
+                    <div class="options">
+
+                        <label class="remember">
+
+                            <input type="checkbox">
+
+                            Remember Me
+
+                        </label>
+
+                        <a href="#">
+
+                            Forgot Password?
+
+                        </a>
+
+                    </div>
+
+                    <!-- Button -->
+
+                    <button
+                        type="submit"
+                        class="login-btn">
+
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+
+                        Login
+
+                    </button>
+
+                </form>
+
+                <!-- Divider -->
+
+                <div class="divider">
+
+                    <span>
+
+                        OR
+
+                    </span>
+
+                </div>
+
+                <!-- Signup -->
+
+                <div class="signup">
+
+                    Don't have an account?
+
+                    <a href="#">
+
+                        Create Account
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- JS -->
+
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+
+</body>
+
+</html>

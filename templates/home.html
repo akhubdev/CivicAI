@@ -1,0 +1,301 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>CivicAI | Home</title>
+
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/home.css') }}">
+
+</head>
+
+<body>
+
+    <!-- Background -->
+
+    <div class="bg-layer">
+
+        <div class="grid-layer"></div>
+
+        <div class="blur blur-blue"></div>
+
+        <div class="blur blur-purple"></div>
+
+    </div>
+
+    <!-- Main Layout -->
+
+    <div class="home-layout">
+
+        <!-- ======================
+                SIDEBAR
+        ======================= -->
+
+        <aside class="sidebar">
+
+            <!-- Logo -->
+
+            <div class="sidebar-logo">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <span>CivicAI</span>
+
+            </div>
+
+            <!-- Menu -->
+
+            <nav class="sidebar-menu">
+
+                <a href="/home" class="active">
+                    <i class="fa-solid fa-house"></i>
+                    Home
+                </a>
+
+                <a href="/upload">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    Upload Issue
+                </a>
+
+                <a href="/dashboard">
+                    <i class="fa-solid fa-chart-column"></i>
+                    Dashboard
+                </a>
+
+                <a href="/history">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    History
+                </a>
+
+                <a href="/analytics">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    Analytics
+                </a>
+
+                <a href="/profile">
+                    <i class="fa-solid fa-user"></i>
+                    Profile
+                </a>
+
+                <a href="/settings">
+                    <i class="fa-solid fa-gear"></i>
+                    Settings
+                </a>
+
+            </nav>
+
+            <!-- Bottom Card -->
+
+            <div class="sidebar-card">
+
+                <h3>
+
+                    AI for Better Cities
+
+                </h3>
+
+                <p>
+
+                    Smart detection
+
+                    Faster response
+
+                    Better future
+
+                </p>
+
+            </div>
+
+        </aside>
+
+        <!-- =====================
+                MAIN CONTENT
+        ====================== -->
+
+        <main class="main-content">
+
+            <!-- Top Bar -->
+
+            <header class="top-bar">
+
+                <div class="live-status">
+
+                    <span class="live-dot"></span>
+
+                    Live Detection
+
+                </div>
+
+                <button class="logout-btn">
+
+                    Logout
+
+                </button>
+
+            </header>
+
+            <!-- Hero -->
+
+            <section class="hero-section">
+
+                <div class="hero-left">
+
+                    <h1>
+
+                        Smart Civic Issue Detection
+
+                        <span>
+
+                            Powered by AI
+
+                        </span>
+
+                    </h1>
+
+                    <p>
+
+                        Upload an image of a civic issue and let AI
+                        detect, analyze and generate actionable reports.
+
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <button class="primary-btn">
+
+                            Upload Image
+
+                        </button>
+
+                        <button class="secondary-btn">
+
+                            View Dashboard
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="hero-right">
+
+                   <div class="ai-orb">
+
+                        <div class="ring ring-one"></div>
+
+                        <div class="ring ring-two"></div>
+
+                        <div class="ring ring-three"></div>
+
+                        <div class="center-orb">
+
+                            AI
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- How It Works -->
+
+            <section class="how-section">
+
+                <h2>
+
+                    How CivicAI Works
+
+                </h2>
+
+                <div class="steps-grid">
+
+                        <div class="step-card">
+
+                             <div class="step-number">1</div>
+
+                            <h3>Upload Image</h3>
+
+                            <p>
+                                 Capture or upload an image of the civic issue.
+                             </p>
+
+                        </div>
+
+                        <div class="step-card">
+
+                            <div class="step-number">2</div>
+
+                            <h3>AI Analysis</h3>
+
+                            <p>
+                                Gemini AI identifies issue type, severity and department.
+                            </p>
+
+                        </div>
+
+                        <div class="step-card">
+
+                            <div class="step-number">3</div>
+
+                            <h3>Get Results</h3>
+
+                            <p>
+                                Receive AI summary, confidence score and smart suggestions.
+                            </p>
+
+                        </div>
+
+                        <div class="step-card">
+
+                            <div class="step-number">4</div>
+
+                            <h3>Take Action</h3>
+
+                            <p>
+                                Download report and help authorities resolve the issue.
+                            </p>
+
+                        </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+
+</body>
+
+</html>

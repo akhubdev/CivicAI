@@ -1,0 +1,448 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>CivicAI | AI Analysis Result</title>
+
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/result.css') }}">
+
+</head>
+
+<body>
+
+    <!-- Background -->
+
+    <div class="bg-layer">
+
+        <div class="grid-layer"></div>
+
+        <div class="blur blur-blue"></div>
+
+        <div class="blur blur-purple"></div>
+
+    </div>
+
+    <!-- Main Layout -->
+
+    <div class="result-layout">
+
+        <!-- PART 2 -->
+
+        <aside class="sidebar">
+
+    <!-- Logo -->
+
+    <div class="sidebar-logo">
+
+        <i class="fa-solid fa-shield-halved"></i>
+
+        <span>CivicAI</span>
+
+    </div>
+
+    <!-- Navigation -->
+
+    <nav class="sidebar-menu">
+
+        <a href="/home">
+
+            <i class="fa-solid fa-house"></i>
+
+            Home
+
+        </a>
+
+        <a href="/upload">
+
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+
+            Upload Issue
+
+        </a>
+
+        <a href="/dashboard">
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            Dashboard
+
+        </a>
+
+        <a href="/history">
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            History
+
+        </a>
+
+        <a href="/analytics">
+
+            <i class="fa-solid fa-chart-pie"></i>
+
+            Analytics
+
+        </a>
+
+        <a class="active">
+
+            <i class="fa-solid fa-square-poll-vertical"></i>
+
+            AI Result
+
+        </a>
+
+    </nav>
+
+    <!-- Bottom Card -->
+
+    <div class="sidebar-card">
+
+        <h3>
+
+            AI Analysis Complete
+
+        </h3>
+
+        <p>
+
+            Your civic issue has been successfully analyzed by Gemini AI.
+
+        </p>
+
+    </div>
+
+</aside>
+
+<!-- ==========================
+        MAIN CONTENT
+========================== -->
+
+<main class="main-content">
+
+    <!-- Top Bar -->
+
+    <header class="top-bar">
+
+        <div>
+
+            <h1>
+
+                AI Analysis Report
+
+            </h1>
+
+            <p>
+
+                Detailed results generated using Gemini AI.
+
+            </p>
+
+        </div>
+
+        <button 
+            class="download-btn"
+            id="downloadBtn">
+
+            <i class="fa-solid fa-file-pdf"></i>
+
+            Download PDF
+
+        </button>
+
+    </header>
+
+    <!-- RESULT SECTION -->
+
+    <!-- PART 3 -->
+
+    <section class="result-section">
+
+    <!-- Left Panel -->
+
+    <div class="image-card">
+
+        <div class="card-title">
+
+            <i class="fa-solid fa-image"></i>
+
+            Uploaded Image
+
+        </div>
+
+        <div class="image-preview">
+
+            <img
+                src="{{ image_path }}"
+                alt="Uploaded Image">
+
+        </div>
+
+    </div>
+
+    <!-- Right Panel -->
+
+    <div class="summary-card">
+
+        <div class="card-title">
+
+            <i class="fa-solid fa-brain"></i>
+
+            AI Analysis Summary
+
+        </div>
+
+        <div class="summary-content">
+
+            {{ result }}
+
+        </div>
+
+        <!-- Severity -->
+
+        <div class="severity-box">
+
+            <span>
+
+                Severity
+
+            </span>
+
+            <div class="severity-level high">
+
+                High
+
+            </div>
+
+        </div>
+
+        <!-- Confidence -->
+
+        <div class="confidence-box">
+
+            <span>
+
+                Confidence Score
+
+            </span>
+
+            <h2>
+
+                96%
+
+            </h2>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PART 4 -->
+
+<section class="details-section">
+
+    <!-- Issue Information -->
+
+    <div class="details-card">
+
+        <div class="card-title">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            Issue Information
+
+        </div>
+
+        <div class="details-grid">
+
+            <div class="detail-item">
+
+                <span>Issue Type</span>
+
+                <strong>{{ issue_type }}</strong>
+
+            </div>
+
+            <div class="detail-item">
+
+                <span>Severity</span>
+
+                <strong class="high-text">{{ severity }}</strong>
+
+            </div>
+
+            <div class="detail-item">
+
+                <span>Priority</span>
+
+                <strong>{{ priority }}</strong>
+
+            </div>
+
+            <div class="detail-item">
+
+                <span>Responsible Department</span>
+
+                <strong>{{ department }}</strong>
+
+            </div>
+
+            <div class="detail-item">
+
+                <span>Location</span>
+
+                <strong>{{ location }}</strong>
+
+            </div>
+
+            <div class="detail-item">
+
+                <span>Report Time</span>
+
+                <strong>{{ report_time }}</strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- AI Recommendation -->
+
+    <div class="recommendation-card">
+
+        <div class="card-title">
+
+            <i class="fa-solid fa-lightbulb"></i>
+
+            AI Recommendation
+
+        </div>
+
+        <div class="recommendation-content">
+
+            {{ recommendation }}
+
+        </div>
+
+        <div class="status-badges">
+
+            <span class="badge danger">
+
+                High Priority
+
+            </span>
+
+            <span class="badge success">
+
+                AI Verified
+
+            </span>
+
+            <span class="badge info">
+
+                Ready for PDF
+
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PART 5 -->
+
+<section class="action-section">
+
+    <div class="action-buttons">
+
+        <a href="/upload" class="action-btn secondary">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Analyze Another Image
+
+        </a>
+
+        <a href="/history" class="action-btn dark">
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            Save to History
+
+        </a>
+
+        <a href="/dashboard" class="action-btn info">
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            Dashboard
+
+        </a>
+
+        <a href="/download_pdf" class="action-btn primary">
+
+            <i class="fa-solid fa-file-pdf"></i>
+
+            Download PDF Report
+
+        </a>
+
+    </div>
+
+</section>
+
+<footer class="result-footer">
+
+    <p>
+
+        © 2026 CivicAI • Powered by Google Gemini AI • Built for Vibe2Ship Hackathon
+
+    </p>
+
+</footer>
+
+</main>
+
+</main>
+
+    </div>
+
+    <!-- JS -->
+
+    <script src="{{ url_for('static', filename='js/result.js') }}"></script>
+
+</body>
+
+</html>

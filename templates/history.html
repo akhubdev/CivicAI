@@ -1,0 +1,574 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>CivicAI | History</title>
+
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/history.css') }}">
+
+</head>
+
+<body>
+
+    <!-- Background -->
+
+    <div class="bg-layer">
+
+        <div class="grid-layer"></div>
+
+        <div class="blur blur-blue"></div>
+
+        <div class="blur blur-purple"></div>
+
+    </div>
+
+    <!-- Main Layout -->
+
+    <div class="history-layout">
+
+        <!-- PART 2 -->
+
+        <aside class="sidebar">
+
+    <!-- Logo -->
+
+    <div class="sidebar-logo">
+
+        <i class="fa-solid fa-shield-halved"></i>
+
+        <span>CivicAI</span>
+
+    </div>
+
+    <!-- Navigation -->
+
+    <nav class="sidebar-menu">
+
+        <a href="/home">
+
+            <i class="fa-solid fa-house"></i>
+
+            Home
+
+        </a>
+
+        <a href="/upload">
+
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+
+            Upload Issue
+
+        </a>
+
+        <a href="/dashboard">
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            Dashboard
+
+        </a>
+
+        <a class="active">
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            History
+
+        </a>
+
+        <a href="/analytics">
+
+            <i class="fa-solid fa-chart-pie"></i>
+
+            Analytics
+
+        </a>
+
+        <a href="/profile">
+
+            <i class="fa-solid fa-user"></i>
+
+            Profile
+
+        </a>
+
+        <a href="/settings">
+
+            <i class="fa-solid fa-gear"></i>
+
+            Settings
+
+        </a>
+
+    </nav>
+
+    <!-- Sidebar Card -->
+
+    <div class="sidebar-card">
+
+        <div class="status-dot"></div>
+
+        <h3>
+
+            Report Archive
+
+        </h3>
+
+        <p>
+
+            Access every AI-generated civic report, download PDFs and track previous issue analysis.
+
+        </p>
+
+    </div>
+
+</aside>
+
+<!-- ==========================
+        MAIN CONTENT
+========================== -->
+
+<main class="main-content">
+
+    <!-- PART 3 -->
+
+    <!-- ==========================
+        TOP BAR
+========================== -->
+
+<header class="top-bar">
+
+    <div class="top-left">
+
+        <h1>
+
+            Report History
+
+        </h1>
+
+        <p>
+
+            View, search and manage all AI-generated civic reports.
+
+        </p>
+
+    </div>
+
+    <div class="top-right">
+
+        <a href="/upload" class="upload-btn">
+
+            <i class="fa-solid fa-plus"></i>
+
+            New Report
+
+        </a>
+
+    </div>
+
+</header>
+
+<!-- ==========================
+        SEARCH + FILTER
+========================== -->
+
+<section class="filter-section">
+    
+    <form method="GET">
+
+    <div class="search-box">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                name="search"
+                value="{{ request.args.get('search','') }}"
+                placeholder="Search by issue, location or department...">
+
+    </div>
+
+    <div class="filter-group">
+
+        <select name="severity">
+
+            <option value="">All Severity</option>
+
+            <option value="Critical"
+            {% if request.args.get('severity')=="Critical" %}selected{% endif %}>
+            Critical
+            </option>
+
+            <option value="High"
+            {% if request.args.get('severity')=="High" %}selected{% endif %}>
+            High
+            </option>
+
+            <option value="Medium"
+            {% if request.args.get('severity')=="Medium" %}selected{% endif %}>
+            Medium
+            </option>
+
+            <option value="Low"
+            {% if request.args.get('severity')=="Low" %}selected{% endif %}>
+            Low
+            </option>
+        </select>
+
+        <select name="status">
+
+            <option value="">All Status</option>
+
+            <option value="Pending"
+            {% if request.args.get('status')=="Pending" %}selected{% endif %}>
+            Pending
+            </option>
+
+            <option value="In Progress"
+            {% if request.args.get('status')=="In Progress" %}selected{% endif %}>
+            In Progress
+            </option>
+
+            <option value="Resolved"
+            {% if request.args.get('status')=="Resolved" %}selected{% endif %}>
+            Resolved
+            </option>
+
+        </select>
+
+        <button class="filter-btn">
+
+            <i class="fa-solid fa-filter"></i>
+
+            Apply
+
+        </button>
+
+    </div>
+    
+    </form>
+
+</section>
+
+<!-- ==========================
+        PART 4
+========================== -->
+
+<!-- ==========================
+        REPORTS TABLE
+========================== -->
+
+<section class="history-table-card">
+
+    <div class="table-header">
+
+        <h2>
+
+            Recent AI Reports
+
+        </h2>
+
+        <span>
+
+            {{ total_reports }} Reports Found
+
+        </span>
+
+    </div>
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Image</th>
+
+                    <th>Issue</th>
+
+                    <th>Location</th>
+
+                    <th>Severity</th>
+
+                    <th>Status</th>
+
+                    <th>Date</th>
+
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for report in reports %}
+
+                <tr>
+
+                    <td>
+
+                        <img
+                            src="{{ url_for('static', filename='uploads/' + report.image_name) }}"
+                            class="thumb">
+
+                    </td>
+
+                    <td>
+
+                        {{ report.issue_type }}
+
+                    </td>
+
+                    <td>
+
+                        {{ report.department }}
+
+                    </td>
+
+                    <td>
+
+                        <span class="severity {{ report.severity|lower }}">
+
+                            {{ report.severity }}
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <span class="status {{ report.status|lower|replace(' ','-') }}">
+
+                            {{ report.status }}
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        {{ report.created_at }}
+
+                    </td>
+
+                    <td>
+
+                        <div class="action-icons">
+
+                            <a
+                                href="/report/{{ report.id }}"
+                                title="View">
+
+                                <i class="fa-solid fa-eye"></i>
+
+                            </a>
+
+                            <a
+                                href="/download_pdf?id={{ report.id }}"
+                                title="PDF">
+
+                                <i class="fa-solid fa-file-pdf"></i>
+
+                            </a>
+
+                            <a
+                                href="/delete/{{ report.id }}"
+                                title="Delete">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </a>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+        PART 5
+========================== -->
+
+<!-- ==========================
+        PAGINATION
+========================== -->
+
+<section class="pagination-section">
+
+    <button class="page-btn">
+
+        <i class="fa-solid fa-angle-left"></i>
+
+    </button>
+
+    <button class="page-btn active">
+
+        1
+
+    </button>
+
+    <button class="page-btn">
+
+        2
+
+    </button>
+
+    <button class="page-btn">
+
+        3
+
+    </button>
+
+    <button class="page-btn">
+
+        <i class="fa-solid fa-angle-right"></i>
+
+    </button>
+
+</section>
+
+<!-- ==========================
+        HISTORY SUMMARY
+========================== -->
+
+<section class="history-summary">
+
+    <div class="summary-card">
+
+        <div class="summary-item">
+
+            <h2>
+
+                {{ total_reports }}
+
+            </h2>
+
+            <span>
+
+                Total Reports
+
+            </span>
+
+        </div>
+
+        <div class="summary-item">
+
+            <h2>
+
+                {{ resolved_reports }}
+
+            </h2>
+
+            <span>
+
+                Resolved
+
+            </span>
+
+        </div>
+
+        <div class="summary-item">
+
+            <h2>
+
+                {{ pending_reports }}
+
+            </h2>
+
+            <span>
+
+                Pending
+
+            </span>
+
+        </div>
+
+        <div class="summary-item">
+
+            <h2>
+
+                {{ critical_reports }}
+
+            </h2>
+
+            <span>
+
+                Critical
+
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+        FOOTER
+========================== -->
+
+<footer class="history-footer">
+
+    <p>
+
+        © 2026 CivicAI • AI Powered Civic Intelligence • Vibe2Ship Hackathon
+
+    </p>
+
+</footer>
+
+</main>
+
+</main>
+
+    </div>
+
+    <!-- JS -->
+
+    <script src="{{ url_for('static', filename='js/history.js') }}"></script>
+
+</body>
+
+</html>

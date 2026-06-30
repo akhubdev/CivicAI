@@ -1,0 +1,691 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>CivicAI | Analytics</title>
+
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Chart.js -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/analytics.css') }}">
+
+</head>
+
+<body>
+
+    <!-- Background -->
+
+    <div class="bg-layer">
+
+        <div class="grid-layer"></div>
+
+        <div class="blur blur-blue"></div>
+
+        <div class="blur blur-purple"></div>
+
+    </div>
+
+    <!-- Main Layout -->
+
+    <div class="analytics-layout">
+
+        <!-- PART 2 -->
+
+        <aside class="sidebar">
+
+    <!-- Logo -->
+
+    <div class="sidebar-logo">
+
+        <i class="fa-solid fa-shield-halved"></i>
+
+        <span>CivicAI</span>
+
+    </div>
+
+    <!-- Navigation -->
+
+    <nav class="sidebar-menu">
+
+        <a href="/home">
+
+            <i class="fa-solid fa-house"></i>
+
+            Home
+
+        </a>
+
+        <a href="/upload">
+
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+
+            Upload Issue
+
+        </a>
+
+        <a href="/dashboard">
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            Dashboard
+
+        </a>
+
+        <a href="/history">
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            History
+
+        </a>
+
+        <a class="active">
+
+            <i class="fa-solid fa-chart-pie"></i>
+
+            Analytics
+
+        </a>
+
+        <a href="/profile">
+
+            <i class="fa-solid fa-user"></i>
+
+            Profile
+
+        </a>
+
+        <a href="/settings">
+
+            <i class="fa-solid fa-gear"></i>
+
+            Settings
+
+        </a>
+
+    </nav>
+
+    <!-- AI Card -->
+
+    <div class="sidebar-card">
+
+        <div class="status-dot"></div>
+
+        <h3>
+
+            AI Analytics Engine
+
+        </h3>
+
+        <p>
+
+            Live statistics generated from all civic issue reports using Gemini AI.
+
+        </p>
+
+    </div>
+
+</aside>
+
+<!-- ==========================
+        MAIN CONTENT
+========================== -->
+
+<main class="main-content">
+
+    <!-- PART 3 -->
+
+    <!-- ==========================
+        TOP BAR
+========================== -->
+
+<header class="top-bar">
+
+    <div class="top-left">
+
+        <h1>
+
+            Analytics Dashboard
+
+        </h1>
+
+        <p>
+
+            AI-powered insights, trends and performance overview.
+
+        </p>
+
+    </div>
+
+    <div class="top-right">
+
+        <div class="live-badge">
+
+            <span class="status-dot"></span>
+
+            Live AI Analytics
+
+        </div>
+
+        <button class="refresh-btn">
+
+            <i class="fa-solid fa-rotate-right"></i>
+
+            Refresh
+
+        </button>
+
+    </div>
+
+</header>
+
+<!-- ==========================
+        KPI CARDS
+========================== -->
+
+<section class="kpi-grid">
+
+    <div class="kpi-card">
+
+        <div class="kpi-icon blue">
+
+            <i class="fa-solid fa-file-lines"></i>
+
+        </div>
+
+        <div class="kpi-info">
+
+            <h4>Total Reports</h4>
+
+            <h2>{{ total_reports }}</h2>
+
+            <span>+12% this month</span>
+
+        </div>
+
+    </div>
+
+    <div class="kpi-card">
+
+        <div class="kpi-icon red">
+
+            <i class="fa-solid fa-triangle-exclamation"></i>
+
+        </div>
+
+        <div class="kpi-info">
+
+            <h4>Critical Issues</h4>
+
+            <h2>{{ critical_reports }}</h2>
+
+            <span>Requires Immediate Action</span>
+
+        </div>
+
+    </div>
+
+    <div class="kpi-card">
+
+        <div class="kpi-icon green">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+        </div>
+
+        <div class="kpi-info">
+
+            <h4>Resolved Cases</h4>
+
+            <h2>{{ resolved_reports }}</h2>
+
+            <span>Successfully Closed</span>
+
+        </div>
+
+    </div>
+
+    <div class="kpi-card">
+
+        <div class="kpi-icon orange">
+
+            <i class="fa-solid fa-clock"></i>
+
+        </div>
+
+        <div class="kpi-info">
+
+            <h4>Pending Cases</h4>
+
+            <h2>{{ pending_reports }}</h2>
+
+            <span>Awaiting Resolution</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+        PART 4
+========================== -->
+
+<!-- ==========================
+        CHARTS SECTION
+========================== -->
+
+<section class="charts-grid">
+
+    <!-- Line Chart -->
+
+    <div class="chart-card large">
+
+        <div class="card-header">
+
+            <div>
+
+                <h3>
+
+                    Monthly Issue Trend
+
+                </h3>
+
+                <p>
+
+                    AI detected civic issues over time
+
+                </p>
+
+            </div>
+
+            <button class="chart-btn">
+
+                Monthly
+
+            </button>
+
+        </div>
+
+        <div class="chart-body">
+
+            <canvas id="lineChart"></canvas>
+
+        </div>
+
+    </div>
+
+    <!-- Pie Chart -->
+
+    <div class="chart-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                Severity Distribution
+
+            </h3>
+
+        </div>
+
+        <div class="chart-body">
+
+            <canvas id="pieChart"></canvas>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+        SECOND ROW
+========================== -->
+
+<section class="charts-grid">
+
+    <!-- Bar Chart -->
+
+    <div class="chart-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                Department Performance
+
+            </h3>
+
+        </div>
+
+        <div class="chart-body">
+
+            <canvas id="barChart"></canvas>
+
+        </div>
+
+    </div>
+
+    <!-- Heat Map Placeholder -->
+
+    <div class="chart-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                Ward-wise Heat Map
+
+            </h3>
+
+        </div>
+
+        <div class="heatmap-placeholder">
+
+            <div class="heat-item critical">
+                <span>🔴 High Risk</span>
+                <strong>Ward 12</strong>
+            </div>
+
+            <div class="heat-item high">
+                <span>🟠 Medium Risk</span>
+                <strong>Ward 8</strong>
+            </div>
+
+            <div class="heat-item medium">
+                <span>🟡 Moderate</span>
+                <strong>Ward 5</strong>
+            </div>
+
+            <div class="heat-item low">
+                <span>🟢 Safe</span>
+                <strong>Ward 2</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+        PART 5
+========================== -->
+
+<!-- ==========================
+        AI INSIGHTS
+========================== -->
+
+<section class="insights-grid">
+
+    <!-- Gemini AI Insights -->
+
+    <div class="insight-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                Gemini AI Insights
+
+            </h3>
+
+        </div>
+
+        <div class="insight-list">
+
+            <div class="insight-item">
+
+                <i class="fa-solid fa-lightbulb"></i>
+
+                <p>
+
+                    Road damage reports increased by <strong>18%</strong> this week.
+
+                </p>
+
+            </div>
+
+            <div class="insight-item">
+
+                <i class="fa-solid fa-trash"></i>
+
+                <p>
+
+                    Garbage complaints are highest in <strong>Ward 12</strong>.
+
+                </p>
+
+            </div>
+
+            <div class="insight-item">
+
+                <i class="fa-solid fa-water"></i>
+
+                <p>
+
+                    Water leakage issues are mostly reported during evening hours.
+
+                </p>
+
+            </div>
+
+            <div class="insight-item">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <p>
+
+                    Average issue resolution time improved by <strong>23%</strong>.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Department Ranking -->
+
+    <div class="ranking-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                Top Performing Departments
+
+            </h3>
+
+        </div>
+
+        <div class="ranking-list">
+
+            <div class="rank-item">
+
+                <span>
+
+                    🥇 Municipal Corporation
+
+                </span>
+
+                <strong>
+
+                    96%
+
+                </strong>
+
+            </div>
+
+            <div class="rank-item">
+
+                <span>
+
+                    🥈 Road & Transport
+
+                </span>
+
+                <strong>
+
+                    92%
+
+                </strong>
+
+            </div>
+
+            <div class="rank-item">
+
+                <span>
+
+                    🥉 Electricity Board
+
+                </span>
+
+                <strong>
+
+                    89%
+
+                </strong>
+
+            </div>
+
+            <div class="rank-item">
+
+                <span>
+
+                    💧 Water Supply
+
+                </span>
+
+                <strong>
+
+                    84%
+
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+        SMART RECOMMENDATIONS
+========================== -->
+
+<section class="recommendation-card">
+
+    <div class="card-header">
+
+        <h3>
+
+            AI Smart Recommendations
+
+        </h3>
+
+    </div>
+
+    <ul class="recommendation-list">
+
+        <li>
+
+            Prioritize high-severity road damage near schools and hospitals.
+
+        </li>
+
+        <li>
+
+            Increase garbage collection frequency in high-density complaint areas.
+
+        </li>
+
+        <li>
+
+            Schedule preventive maintenance for recurring water leakage zones.
+
+        </li>
+
+        <li>
+
+            Deploy additional field teams during peak reporting hours.
+
+        </li>
+
+    </ul>
+
+</section>
+
+<!-- ==========================
+        FOOTER
+========================== -->
+
+<footer class="analytics-footer">
+
+    <p>
+
+        © 2026 CivicAI • AI Analytics powered by Google Gemini • Vibe2Ship Hackathon
+
+    </p>
+
+</footer>
+
+</main>
+
+</main>
+
+    </div>
+    <script>
+        const departmentLabels = {{ department_labels|tojson }};
+        const departmentCounts = {{ department_counts|tojson }};
+
+        const monthlyLabels = {{ monthly_labels|tojson }};
+        const monthlyCounts = {{ monthly_counts|tojson }};
+
+        const severityCounts = [
+            {{ critical_reports }},
+            {{ high_reports }},
+            {{ medium_reports }},
+            {{ low_reports }}
+        ];
+    </script>
+
+    <!-- JS -->
+
+    <script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>CivicAI | Upload Issue</title>
+
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/upload.css') }}">
+
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+
+    <div class="bg-layer">
+
+        <div class="grid-layer"></div>
+
+        <div class="blur blur-blue"></div>
+
+        <div class="blur blur-purple"></div>
+
+    </div>
+
+    <!-- Main Layout -->
+
+    <div class="upload-layout">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+    <!-- Logo -->
+
+    <div class="sidebar-logo">
+
+        <i class="fa-solid fa-shield-halved"></i>
+
+        <span>CivicAI</span>
+
+    </div>
+
+    <!-- Navigation -->
+
+    <nav class="sidebar-menu">
+
+        <a href="/home">
+
+            <i class="fa-solid fa-house"></i>
+
+            Home
+
+        </a>
+
+        <a class="active">
+
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+
+            Upload Issue
+
+        </a>
+
+        <a href="/dashboard">
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            Dashboard
+
+        </a>
+
+        <a href="/history">
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            History
+
+        </a>
+
+        <a href="/analytics">
+
+            <i class="fa-solid fa-chart-pie"></i>
+
+            Analytics
+
+        </a>
+
+        <a href="/profile">
+
+            <i class="fa-solid fa-user"></i>
+
+            Profile
+
+        </a>
+
+        <a href="/settings">
+
+            <i class="fa-solid fa-gear"></i>
+
+            Settings
+
+        </a>
+
+    </nav>
+
+    <!-- Bottom Card -->
+
+    <div class="sidebar-card">
+
+        <h3>
+
+            AI Powered Reporting
+
+        </h3>
+
+        <p>
+
+            Upload civic issue images and let
+            Gemini AI analyze them instantly.
+
+        </p>
+
+    </div>
+
+</aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+    <!-- Top Bar -->
+
+    <header class="top-bar">
+
+        <div class="page-title">
+
+            <h1>
+
+                Upload Civic Issue
+
+            </h1>
+
+            <p>
+
+                Upload an image and let AI detect the issue automatically.
+
+            </p>
+
+        </div>
+
+        <button class="back-btn">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Back
+
+        </button>
+
+    </header>
+
+    <!-- Upload Section -->
+
+    <section class="upload-section">
+
+        <div class="upload-card">
+
+            <div class="upload-icon">
+
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+
+            </div>
+
+            <h2>
+
+                Drag & Drop Your Image
+
+            </h2>
+
+            <p>
+
+                JPG, PNG or JPEG • Maximum Size 10 MB
+
+            </p>
+
+            <form
+                action="/analyze"
+                method="POST"
+                enctype="multipart/form-data">
+
+                <input
+                    type="file"
+                    id="imageInput"
+                    name="image"
+                    accept="image/*"
+                    hidden>
+
+                <label
+                    for="imageInput"
+                    class="choose-btn">
+
+                    Choose Image
+
+                </label>
+
+                <div
+                    id="previewContainer">
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="analyze-btn">
+
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                    Analyze with AI
+
+                </button>
+
+            </form>
+
+        </div>
+
+        </section>
+
+    <!-- AI Features -->
+
+    <section class="features-section">
+
+        <h2>
+
+            Why Use CivicAI?
+
+        </h2>
+
+        <div class="features-grid">
+
+            <div class="feature-card">
+
+                <i class="fa-solid fa-brain"></i>
+
+                <h3>Gemini AI Analysis</h3>
+
+                <p>
+
+                    Detects issue type, severity, priority and affected department.
+
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                <h3>Location Ready</h3>
+
+                <p>
+
+                    Supports location-aware reporting for faster government response.
+
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <i class="fa-solid fa-file-pdf"></i>
+
+                <h3>Government PDF</h3>
+
+                <p>
+
+                    Generates a professional report ready for complaint submission.
+
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <h3>Smart Analytics</h3>
+
+                <p>
+
+                    Every upload contributes to dashboard insights and statistics.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+    </div>
+
+    <!-- JS -->
+
+    <script src="{{ url_for('static', filename='js/upload.js') }}"></script>
+
+</body>
+
+</html>

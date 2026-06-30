@@ -1,0 +1,219 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>CivicAI | AI Processing</title>
+
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/loading.css') }}">
+
+</head>
+
+<body>
+
+    <!-- Background -->
+
+    <div class="bg-layer">
+
+        <div class="grid-layer"></div>
+
+        <div class="blur blur-blue"></div>
+
+        <div class="blur blur-purple"></div>
+
+    </div>
+
+    <!-- Loading Container -->
+
+    <main class="loading-container">
+
+        <!-- PART 2 -->
+
+        <div class="loading-card">
+
+    <!-- AI Orb -->
+
+    <div class="loading-orb">
+
+        <div class="ring ring-one"></div>
+
+        <div class="ring ring-two"></div>
+
+        <div class="ring ring-three"></div>
+
+        <div class="center-orb">
+
+            AI
+
+        </div>
+
+    </div>
+
+    <!-- Heading -->
+
+    <h1>
+
+        Gemini AI is Processing...
+
+    </h1>
+
+    <p>
+
+        Please wait while CivicAI analyzes your uploaded image
+        and prepares a detailed report.
+
+    </p>
+
+    <!-- Progress -->
+
+    <div class="progress-wrapper">
+
+        <div class="progress-bar">
+
+            <div class="progress-fill"></div>
+
+        </div>
+
+        <span id="progressText">
+
+            0%
+
+        </span>
+
+    </div>
+
+    <!-- Steps -->
+
+    <div class="loading-steps">
+
+        <div class="step">
+
+            <i class="fa-solid fa-image"></i>
+
+            <span>Reading Image...</span>
+
+        </div>
+
+        <div class="step">
+
+            <i class="fa-solid fa-brain"></i>
+
+            <span>Running Gemini AI...</span>
+
+        </div>
+
+        <div class="step">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+            <span>Detecting Issue...</span>
+
+        </div>
+
+        <div class="step">
+
+            <i class="fa-solid fa-file-lines"></i>
+
+            <span>Generating Report...</span>
+
+        </div>
+
+    </div>
+
+    </div>
+
+    <!-- Processing Information -->
+
+    <section class="processing-info">
+
+        <div class="info-card">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <div>
+
+                <h3>Secure Processing</h3>
+
+                <p>
+
+                    Your uploaded image is processed securely and is never shared with third parties.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="info-card">
+
+            <i class="fa-solid fa-microchip"></i>
+
+            <div>
+
+                <h3>Powered by Gemini AI</h3>
+
+                <p>
+
+                    Vision AI analyzes issue type, severity, priority and generates actionable insights.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="info-card">
+
+            <i class="fa-solid fa-bolt"></i>
+
+            <div>
+
+                <h3>Average Processing Time</h3>
+
+                <p>
+
+                    Usually completed within 5-10 seconds depending on image complexity.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+    <script src="{{ url_for('static', filename='js/loading.js') }}"></script>
+
+</body>
+
+</html>

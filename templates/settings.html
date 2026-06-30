@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>CivicAI | Settings</title>
+
+<!-- Google Font -->
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<!-- Font Awesome -->
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<!-- CSS -->
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/settings.css') }}">
+
+</head>
+
+<body>
+
+<!-- =====================================
+BACKGROUND
+===================================== -->
+
+<div class="bg-layer">
+
+    <div class="grid-layer"></div>
+
+    <div class="blur blur-blue"></div>
+
+    <div class="blur blur-purple"></div>
+
+</div>
+
+<!-- =====================================
+MAIN LAYOUT
+===================================== -->
+
+<div class="settings-layout">
+
+<!-- =====================================
+SIDEBAR
+===================================== -->
+
+<aside class="sidebar">
+
+    <!-- Logo -->
+
+    <div class="sidebar-logo">
+
+        <i class="fa-solid fa-shield-halved"></i>
+
+        <span>CivicAI</span>
+
+    </div>
+
+    <!-- Navigation -->
+
+    <nav class="sidebar-menu">
+
+        <a href="/home">
+
+            <i class="fa-solid fa-house"></i>
+
+            Home
+
+        </a>
+
+        <a href="/upload">
+
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+
+            Upload Issue
+
+        </a>
+
+        <a href="/dashboard">
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            Dashboard
+
+        </a>
+
+        <a href="/history">
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            History
+
+        </a>
+
+        <a href="/analytics">
+
+            <i class="fa-solid fa-chart-pie"></i>
+
+            Analytics
+
+        </a>
+
+        <a href="/profile">
+
+            <i class="fa-solid fa-user"></i>
+
+            Profile
+
+        </a>
+
+        <a class="active">
+
+            <i class="fa-solid fa-gear"></i>
+
+            Settings
+
+        </a>
+
+    </nav>
+
+    <!-- AI Status Card -->
+
+    <div class="sidebar-card">
+
+        <div class="status-dot"></div>
+
+        <h3>
+
+            AI System Healthy
+
+        </h3>
+
+        <p>
+
+            All CivicAI services are online and operating normally.
+
+        </p>
+
+    </div>
+
+</aside>
+
+<!-- =====================================
+MAIN CONTENT
+===================================== -->
+
+<main class="main-content">
+    
+
+<!-- =====================================
+TOP BAR
+===================================== -->
+
+<header class="top-bar">
+
+    <div class="top-left">
+
+        <h1>
+
+            Settings
+
+        </h1>
+
+        <p>
+
+            Manage your CivicAI preferences and application settings.
+
+        </p>
+
+    </div>
+
+    <div class="top-right">
+
+        <div class="ai-status">
+
+            <span class="status-dot"></span>
+
+            AI Connected
+
+        </div>
+
+        <button class="save-btn">
+
+            <i class="fa-solid fa-floppy-disk"></i>
+
+            Save Changes
+
+        </button>
+
+    </div>
+
+</header>
+
+<!-- =====================================
+SETTINGS HERO
+===================================== -->
+
+<section class="settings-hero">
+
+    <div class="hero-content">
+
+        <h2>
+
+            Personalize Your CivicAI Experience
+
+        </h2>
+
+        <p>
+
+            Configure notifications, AI analysis behavior, language preferences, privacy options, and account settings from one place.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- =====================================
+SETTINGS GRID
+===================================== -->
+
+<section class="settings-grid">
+
+    <!-- General Settings -->
+
+    <div class="settings-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                <i class="fa-solid fa-sliders"></i>
+
+                General Settings
+
+            </h3>
+
+        </div>
+
+        <div class="setting-item">
+
+            <label>
+
+                Language
+
+            </label>
+
+            <select>
+
+                <option selected>
+
+                    English
+
+                </option>
+
+                <option>
+
+                    हिन्दी
+
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="setting-item">
+
+            <label>
+
+                Time Zone
+
+            </label>
+
+            <select>
+
+                <option selected>
+
+                    Asia/Kolkata
+
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="setting-item">
+
+            <label>
+
+                Date Format
+
+            </label>
+
+            <select>
+
+                <option selected>
+
+                    DD-MM-YYYY
+
+                </option>
+
+                <option>
+
+                    MM-DD-YYYY
+
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+    <!-- Appearance -->
+
+    <div class="settings-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                <i class="fa-solid fa-palette"></i>
+
+                Appearance
+
+            </h3>
+
+        </div>
+
+        <div class="setting-item toggle-row">
+
+            <span>
+
+                Dark Theme
+
+            </span>
+
+            <label class="switch">
+
+                <input type="checkbox" checked>
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+        <div class="setting-item toggle-row">
+
+            <span>
+
+                Glass Effect
+
+            </span>
+
+            <label class="switch">
+
+                <input type="checkbox" checked>
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+        <div class="setting-item toggle-row">
+
+            <span>
+
+                Enable Animations
+
+            </span>
+
+            <label class="switch">
+
+                <input type="checkbox" checked>
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================
+ADVANCED SETTINGS
+===================================== -->
+
+<section class="settings-grid">
+
+    <!-- AI Preferences -->
+
+    <div class="settings-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                <i class="fa-solid fa-robot"></i>
+
+                AI Analysis Preferences
+
+            </h3>
+
+        </div>
+
+        <div class="setting-item toggle-row">
+
+            <span>
+
+                Auto AI Analysis
+
+            </span>
+
+            <label class="switch">
+
+                <input type="checkbox" checked>
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+        <div class="setting-item toggle-row">
+
+            <span>
+
+                High Accuracy Mode
+
+            </span>
+
+            <label class="switch">
+
+                <input type="checkbox" checked>
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+        <div class="setting-item">
+
+            <label>
+
+                AI Model
+
+            </label>
+
+            <select>
+
+                <option selected>
+
+                    Gemini 2.5 Flash
+
+                </option>
+
+                <option>
+
+                    Gemini 2.5 Pro
+
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+    <!-- Notification Settings -->
+
+    <div class="settings-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                <i class="fa-solid fa-bell"></i>
+
+                Notifications
+
+            </h3>
+
+        </div>
+
+        <div class="setting-item toggle-row">
+
+            <span>
+
+                Email Notifications
+
+            </span>
+
+            <label class="switch">
+
+                <input type="checkbox" checked>
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+        <div class="setting-item toggle-row">
+
+            <span>
+
+                Browser Notifications
+
+            </span>
+
+            <label class="switch">
+
+                <input type="checkbox">
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+        <div class="setting-item toggle-row">
+
+            <span>
+
+                Critical Issue Alerts
+
+            </span>
+
+            <label class="switch">
+
+                <input type="checkbox" checked>
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+    </div>
+
+    <!-- Privacy -->
+
+    <div class="settings-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                Privacy & Security
+
+            </h3>
+
+        </div>
+
+        <div class="setting-item toggle-row">
+
+            <span>
+
+                Two-Factor Authentication
+
+            </span>
+
+            <label class="switch">
+
+                <input type="checkbox">
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+        <div class="setting-item toggle-row">
+
+            <span>
+
+                Save Login Session
+
+            </span>
+
+            <label class="switch">
+
+                <input type="checkbox" checked>
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+        <div class="setting-item toggle-row">
+
+            <span>
+
+                Anonymous Analytics
+
+            </span>
+
+            <label class="switch">
+
+                <input type="checkbox">
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+    </div>
+
+    <!-- Export -->
+
+    <div class="settings-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                <i class="fa-solid fa-file-export"></i>
+
+                Export Preferences
+
+            </h3>
+
+        </div>
+
+        <div class="setting-item">
+
+            <label>
+
+                Default Export Format
+
+            </label>
+
+            <select>
+
+                <option selected>
+
+                    PDF
+
+                </option>
+
+                <option>
+
+                    CSV
+
+                </option>
+
+                <option>
+
+                    Excel
+
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="setting-item">
+
+            <label>
+
+                Report Quality
+
+            </label>
+
+            <select>
+
+                <option selected>
+
+                    High
+
+                </option>
+
+                <option>
+
+                    Medium
+
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================
+ACCOUNT & DANGER ZONE
+===================================== -->
+
+<section class="settings-grid">
+
+    <!-- Account -->
+
+    <div class="settings-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                <i class="fa-solid fa-user-gear"></i>
+
+                Account Settings
+
+            </h3>
+
+        </div>
+
+        <div class="setting-actions">
+
+            <button class="primary-btn">
+
+                <i class="fa-solid fa-user-pen"></i>
+
+                Edit Profile
+
+            </button>
+
+            <button class="secondary-btn">
+
+                <i class="fa-solid fa-key"></i>
+
+                Change Password
+
+            </button>
+
+            <button class="secondary-btn">
+
+                <i class="fa-solid fa-envelope"></i>
+
+                Update Email
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Danger Zone -->
+
+    <div class="settings-card danger-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+                Danger Zone
+
+            </h3>
+
+        </div>
+
+        <p class="danger-text">
+
+            These actions may permanently affect your account.
+            Please proceed carefully.
+
+        </p>
+
+        <div class="setting-actions">
+
+            <button class="warning-btn">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Logout
+
+            </button>
+
+            <button class="danger-btn">
+
+                <i class="fa-solid fa-trash"></i>
+
+                Delete Account
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================
+FOOTER
+===================================== -->
+
+<footer class="settings-footer">
+
+    <p>
+
+        © 2026 CivicAI • AI Powered Community Issue Intelligence Platform
+
+    </p>
+
+    <span>
+
+        Built with ❤️ using Flask • Gemini AI • SQLite
+
+    </span>
+
+</footer>
+
+</main>
+
+</div>
+
+<!-- =====================================
+JAVASCRIPT
+===================================== -->
+
+<script src="{{ url_for('static', filename='js/settings.js') }}"></script>
+
+</body>
+
+</html>
+    
