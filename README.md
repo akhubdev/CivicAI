@@ -6,7 +6,7 @@
 
 Built during the **Coding Ninjas × Google for Developers – Vibe2Ship Hackathon**
 
-<p>
+<p align="center">
 
 <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
 <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white">
@@ -16,7 +16,7 @@ Built during the **Coding Ninjas × Google for Developers – Vibe2Ship Hackatho
 
 </p>
 
-🌐 **Live Demo**
+### 🌐 Live Demo
 
 https://civicai-4kqm.onrender.com
 
@@ -26,25 +26,25 @@ https://civicai-4kqm.onrender.com
 
 # 📖 About
 
-**CivicAI** is an AI-powered web application that simplifies civic issue reporting through image-based analysis.
+**CivicAI** is an AI-powered civic issue reporting platform designed to simplify how citizens report public infrastructure problems.
 
-Users upload an image of a public issue, and **Google Gemini AI** automatically identifies the issue, predicts severity, recommends the responsible department, assigns priority, and generates an intelligent report.
+Users can upload an image of an issue, and **Google Gemini AI** automatically analyzes it, identifies the issue category, predicts severity, recommends the responsible department, assigns priority, and generates an intelligent report.
 
-The project was developed during the **Coding Ninjas × Google for Developers – Vibe2Ship Hackathon** to demonstrate how Generative AI can improve civic issue management.
+This project was developed during the **Coding Ninjas × Google for Developers – Vibe2Ship Hackathon**, showcasing how Generative AI can enhance civic issue reporting and support smarter city management.
 
 ---
 
 # ✨ Features
 
-- 🤖 AI Image Analysis
+- 🤖 AI-Powered Image Analysis
 - 📤 Smart Issue Reporting
-- 📊 Analytics Dashboard
-- 📜 Report History
-- 📄 PDF Report Generation
+- 📊 Interactive Analytics Dashboard
+- 📜 Complaint History
+- 📄 AI-Generated PDF Reports
 - 👤 User Authentication
-- 🔔 Notifications
+- 🔔 Notification System
 - 🗺 Smart Maps
-- ☁️ Cloud Deployment
+- ☁️ Cloud Deployment (Render)
 
 ---
 
@@ -56,7 +56,7 @@ The project was developed during the **Coding Ninjas × Google for Developers �
 | Backend | Python • Flask |
 | AI | Google Gemini 2.5 Flash |
 | Database | SQLite |
-| Charts | Chart.js |
+| Visualization | Chart.js |
 | Deployment | Render |
 
 ---
@@ -69,35 +69,83 @@ Developed during the
 
 # **Vibe2Ship Hackathon**
 
-> *(Hackathon certificate will be added soon.)*
+> 🏅 **Hackathon participation certificate will be added soon.**
 
 ---
 
 # 📸 Screenshots
 
-| Home | Dashboard |
-|------|-----------|
-| Add Screenshot | Add Screenshot |
+## 🏠 Home
 
-| Upload | AI Analysis |
-|--------|-------------|
-| Add Screenshot | Add Screenshot |
+<p align="center">
+<img src="screenshots/Home.png" width="100%">
+</p>
 
-| Analytics |
-|-----------|
-| Add Screenshot |
+---
+
+## 📤 Dashboard
+
+<p align="center">
+<img src="screenshots/Dashboard.png" width="100%">
+</p>
+
+---
+
+## 🤖 AI Analysis
+
+<p align="center">
+<img src="screenshots/Analytics.png" width="100%">
+</p>
+
+---
+
+## 📊 Maps
+
+<p align="center">
+<img src="screenshots/Maps.png" width="100%">
+</p>
+
+---
+
+## 📈 History
+
+<p align="center">
+<img src="screenshots/History.png" width="100%">
+</p>
+
+---
+
+## 👤 Profile
+
+<p align="center">
+<img src="screenshots/Profile.png" width="100%">
+</p>
 
 ---
 
 # ⚙️ Run Locally
 
+Clone the repository
+
 ```bash
 git clone https://github.com/akhubdev/CivicAI.git
+```
 
+Go to the project directory
+
+```bash
 cd CivicAI
+```
 
+Install dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
+Run the application
+
+```bash
 python app.py
 ```
 
@@ -109,21 +157,19 @@ python app.py
 
 **Data Analyst • Python Developer • AI & Machine Learning Enthusiast**
 
-GitHub
-
+**GitHub**  
 https://github.com/akhubdev
 
-LinkedIn
-
+**LinkedIn**  
 https://linkedin.com/in/akashdastech
 
 ---
 
 <div align="center">
 
-## ⭐ If you like this project,
+## ⭐ If you found this project helpful,
 
-### Give it a Star ⭐
+### Consider giving it a Star ⭐
 
 Made with ❤️ by **Akash Das**
 
