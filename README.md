@@ -6,18 +6,17 @@
 
 Built during the **Coding Ninjas × Google for Developers – Vibe2Ship Hackathon**
 
-<p align="center">
+<p>
 
-<img src="https://img.shields.io/badge/Python-3.13-blue?style=for-the-badge&logo=python">
-<img src="https://img.shields.io/badge/Flask-Web_Framework-black?style=for-the-badge&logo=flask">
-<img src="https://img.shields.io/badge/Google-Gemini_AI-4285F4?style=for-the-badge&logo=google">
-<img src="https://img.shields.io/badge/SQLite-Database-blue?style=for-the-badge&logo=sqlite">
-<img src="https://img.shields.io/badge/Chart.js-Analytics-FF6384?style=for-the-badge&logo=chartdotjs">
-<img src="https://img.shields.io/badge/Render-Deployed-46E3B7?style=for-the-badge&logo=render">
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
+<img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white">
+<img src="https://img.shields.io/badge/Google-Gemini_AI-4285F4?style=for-the-badge&logo=google&logoColor=white">
+<img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white">
+<img src="https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white">
 
 </p>
 
-### 🌐 Live Demo
+🌐 **Live Demo**
 
 https://civicai-4kqm.onrender.com
 
@@ -27,26 +26,25 @@ https://civicai-4kqm.onrender.com
 
 # 📖 About
 
-**CivicAI** is an AI-powered civic issue reporting platform that helps citizens report public infrastructure problems in a smarter and faster way.
+**CivicAI** is an AI-powered web application that simplifies civic issue reporting through image-based analysis.
 
-Instead of submitting traditional complaints, users can upload an image of an issue such as potholes, garbage, damaged roads, or streetlight failures. Using **Google Gemini AI**, CivicAI analyzes the image, identifies the issue, recommends the responsible department, assigns a priority level, and generates an intelligent report.
+Users upload an image of a public issue, and **Google Gemini AI** automatically identifies the issue, predicts severity, recommends the responsible department, assigns priority, and generates an intelligent report.
 
-The project was developed during the **Coding Ninjas × Google for Developers – Vibe2Ship Hackathon** to demonstrate how Generative AI can improve civic issue management and smart city initiatives.
+The project was developed during the **Coding Ninjas × Google for Developers – Vibe2Ship Hackathon** to demonstrate how Generative AI can improve civic issue management.
 
 ---
 
 # ✨ Features
 
-- 🤖 AI-powered Image Analysis
-- 📤 Smart Complaint Submission
-- 🏛 Department Recommendation
-- ⚡ Priority Detection
+- 🤖 AI Image Analysis
+- 📤 Smart Issue Reporting
 - 📊 Analytics Dashboard
+- 📜 Report History
 - 📄 PDF Report Generation
 - 👤 User Authentication
-- 🗂 Complaint History
-- 📈 Interactive Charts
-- ☁️ Cloud Deployment using Render
+- 🔔 Notifications
+- 🗺 Smart Maps
+- ☁️ Cloud Deployment
 
 ---
 
@@ -54,8 +52,8 @@ The project was developed during the **Coding Ninjas × Google for Developers �
 
 | Category | Technologies |
 |----------|--------------|
-| Frontend | HTML, CSS, JavaScript |
-| Backend | Python, Flask |
+| Frontend | HTML • CSS • JavaScript |
+| Backend | Python • Flask |
 | AI | Google Gemini 2.5 Flash |
 | Database | SQLite |
 | Charts | Chart.js |
@@ -65,106 +63,43 @@ The project was developed during the **Coding Ninjas × Google for Developers �
 
 # 🏆 Hackathon
 
-This project was built during the
+Developed during the
 
-## Coding Ninjas × Google for Developers
+## **Coding Ninjas × Google for Developers**
 
 # **Vibe2Ship Hackathon**
 
-The goal of this project was to leverage **Generative AI** for improving civic issue reporting, making complaint management faster, smarter, and more efficient.
+> *(Hackathon certificate will be added soon.)*
 
 ---
 
-# 📸 Application Preview
+# 📸 Screenshots
 
-### 🏠 Home
+| Home | Dashboard |
+|------|-----------|
+| Add Screenshot | Add Screenshot |
 
-> Add Screenshot
+| Upload | AI Analysis |
+|--------|-------------|
+| Add Screenshot | Add Screenshot |
 
----
-
-### 📤 Upload Issue
-
-> Add Screenshot
-
----
-
-### 🤖 AI Analysis
-
-> Add Screenshot
+| Analytics |
+|-----------|
+| Add Screenshot |
 
 ---
 
-### 📊 Dashboard
-
-> Add Screenshot
-
----
-
-### 📈 Analytics
-
-> Add Screenshot
-
----
-
-# ⚙️ Installation
-
-Clone the repository
+# ⚙️ Run Locally
 
 ```bash
 git clone https://github.com/akhubdev/CivicAI.git
-```
 
-Go to project folder
-
-```bash
 cd CivicAI
-```
 
-Install dependencies
-
-```bash
 pip install -r requirements.txt
-```
 
-Run the application
-
-```bash
 python app.py
 ```
-
----
-
-# 📂 Project Structure
-
-```
-CivicAI/
-
-│<img width="1851" height="872" alt="Screenshot 2026-07-12 174954" src="https://github.com/user-attachments/assets/69f601a8-f62c-4b1e-882e-bbe4b8b50f38" />
-
-
-├── static/
-
-├── templates/
-
-├── uploads/
-
-├── app.py
-
-├── requirements.txt
-
-└── README.md
-```
-
----
-
-# 🚀 Future Improvements
-
-- 📍 Live GPS Location
-- 🔔 Real-time Notifications
-- 🏛 Government API Integration
-- 📱 Mobile Application
-- 🌍 Multi-language Support
 
 ---
 
@@ -172,7 +107,7 @@ CivicAI/
 
 ## Akash Das
 
-**Data Analyst | Python Developer | AI & Machine Learning Enthusiast**
+**Data Analyst • Python Developer • AI & Machine Learning Enthusiast**
 
 GitHub
 
@@ -180,16 +115,16 @@ https://github.com/akhubdev
 
 LinkedIn
 
-(Add your LinkedIn Profile)
+https://linkedin.com/in/akashdastech
 
 ---
 
 <div align="center">
 
-## ⭐ If you found this project useful,
+## ⭐ If you like this project,
 
 ### Give it a Star ⭐
 
-Thank you for visiting ❤️
+Made with ❤️ by **Akash Das**
 
 </div>
