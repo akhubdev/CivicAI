@@ -93,14 +93,8 @@ os.makedirs(
 # =====================================================
 
 genai.configure(
-
-    api_key=os.getenv(
-        "GOOGLE_API_KEY"
-    )
-
+    api_key=os.getenv("GOOGLE_API_KEY")
 )
-
-print("GOOGLE_API_KEY =", os.getenv("GOOGLE_API_KEY"))
 model = genai.GenerativeModel(
 
     "gemini-2.5-flash"
