@@ -102,7 +102,7 @@ Developed during the
 ## 📊 Maps
 
 <p align="center">
-<img src="screenshots/Maps.png" width="100%">
+<img src="screenshots/Maps1.png" width="100%">
 </p>
 
 ---
