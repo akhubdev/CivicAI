@@ -106,6 +106,11 @@ SIDEBAR
 
         </a>
 
+        <a href="/smart-maps">
+            <i class="fa-solid fa-map-location-dot"></i>
+            Smart Maps
+        </a>
+
         <a href="/analytics">
 
             <i class="fa-solid fa-chart-pie"></i>
@@ -119,14 +124,6 @@ SIDEBAR
             <i class="fa-solid fa-user"></i>
 
             Profile
-
-        </a>
-
-        <a href="/settings">
-
-            <i class="fa-solid fa-gear"></i>
-
-            Settings
 
         </a>
 
@@ -192,8 +189,40 @@ TOP BAR
             Gemini AI Connected
 
         </div>
+    <div class="notification-wrapper">
 
-        <button class="edit-profile-btn">
+    <button id="notificationBtn" class="notification-btn">
+        <i class="fas fa-bell"></i>
+        <span class="notification-badge">4</span>
+    </button>
+
+    <div id="notificationDropdown" class="notification-dropdown">
+
+        <h4>Notifications</h4>
+
+        {% for notification in notifications %}
+
+        <div class="notification-item">
+
+            <i class="fas fa-bell"></i>
+
+            <div>
+                <strong>{{ notification["title"] }}</strong>
+
+                <p>{{ notification["message"] }}</p>
+
+                <small>{{ notification["created_at"] }}</small>
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+        <button class="edit-profile-btn" id="editProfileBtn">
 
             <i class="fa-solid fa-pen"></i>
 
@@ -215,8 +244,34 @@ PROFILE HERO
 
         <div class="profile-avatar">
 
-            <img src="{{ url_for('static', filename='images/avatar.png') }}"
-                 alt="Profile">
+            <img
+                id="profileImage"
+                src="{{ url_for('static', filename=avatar) }}"
+                alt="Profile">
+            
+            <form
+                id="avatarForm"
+                action="/upload_avatar"
+                method="POST"
+                enctype="multipart/form-data">
+
+                    <input
+                        type="file"
+                        id="avatarInput"
+                        name="avatar"
+                        accept=".png,.jpg,.jpeg,.webp"
+                        hidden>
+
+                    <button
+                        type="button"
+                        id="changeAvatarBtn"
+                        class="avatar-upload-btn">
+
+                    <i class="fas fa-camera"></i>
+
+                </button>
+
+            </form>
 
         </div>
 
@@ -224,38 +279,51 @@ PROFILE HERO
 
             <h2>
 
-                Akash Das
+                {{ user.full_name }}
 
             </h2>
 
             <span class="profile-role">
 
-                AI & Data Analyst
+                {{ user.role }}
 
             </span>
 
             <p>
 
-                Passionate about Artificial Intelligence, Machine Learning,
-                Data Analytics and Smart City Solutions.
+                {{ user.bio }}
 
             </p>
 
             <div class="profile-tags">
 
-                <span>Python</span>
+                {% for skill in skills.split(',') if skill.strip() %}
 
-                <span>Flask</span>
+                    <span>{{ skill.strip() }}</span>
 
-                <span>Machine Learning</span>
-
-                <span>Data Analytics</span>
+                {% endfor %}
 
             </div>
 
         </div>
 
     </div>
+<div class="profile-completion-card">
+
+    <div class="completion-header">
+        <h3>Profile Completion</h3>
+        <span>{{ profile_completion }}%</span>
+    </div>
+
+    <div class="completion-bar">
+        <div class="completion-fill"style="width: {{ profile_completion }}%;"></div>
+    </div>
+
+    <p>
+        Complete your profile to unlock all CivicAI features.
+    </p>
+
+</div>
 
 </section>
 
@@ -294,7 +362,7 @@ PERSONAL INFORMATION
 
                 <strong>
 
-                    Akash Das
+                    {{ user.full_name }}
 
                 </strong>
 
@@ -312,7 +380,7 @@ PERSONAL INFORMATION
 
                 <strong>
 
-                    akash@example.com
+                    {{ user.email }}
 
                 </strong>
 
@@ -330,7 +398,7 @@ PERSONAL INFORMATION
 
                 <strong>
 
-                    +91 XXXXX XXXXX
+                    {{ user.phone }}
 
                 </strong>
 
@@ -348,7 +416,7 @@ PERSONAL INFORMATION
 
                 <strong>
 
-                    Angul, Odisha
+                    {{ user.location }}
 
                 </strong>
 
@@ -366,7 +434,7 @@ PERSONAL INFORMATION
 
                 <strong>
 
-                    June 2026
+                    {{ user.joined_date }}
 
                 </strong>
 
@@ -404,7 +472,7 @@ PERSONAL INFORMATION
 
                 <strong>
 
-                    AI & Data Analyst
+                    {{ user.role }}
 
                 </strong>
 
@@ -422,7 +490,7 @@ PERSONAL INFORMATION
 
                 <strong>
 
-                    B.Tech CSE
+                    {{ user.education }}
 
                 </strong>
 
@@ -440,7 +508,7 @@ PERSONAL INFORMATION
 
                 <strong>
 
-                    BPUT Odisha
+                    {{ user.university }}
 
                 </strong>
 
@@ -456,11 +524,15 @@ PERSONAL INFORMATION
 
                 </span>
 
-                <strong>
+                <div class="skills-list">
 
-                    Python • Flask • SQL
+                    {% for skill in skills.split(',') if skill.strip() %}
 
-                </strong>
+                    <span>{{ skill.strip() }}</span>
+
+                        {% endfor %}
+
+                </div>
 
             </div>
 
@@ -476,7 +548,7 @@ PERSONAL INFORMATION
 
                 <strong>
 
-                    Fresher
+                    {{ user.experience }}
 
                 </strong>
 
@@ -517,7 +589,7 @@ PROFILE DASHBOARD
 
                 <div class="stat-box">
 
-                    <h2>128</h2>
+                    <h2>{{ total_reports }}</h2>
 
                     <span>Total Reports</span>
 
@@ -525,7 +597,7 @@ PROFILE DASHBOARD
 
                 <div class="stat-box">
 
-                    <h2>94%</h2>
+                    <h2>{{ ai_accuracy }}%</h2>
 
                     <span>AI Accuracy</span>
 
@@ -533,7 +605,7 @@ PROFILE DASHBOARD
 
                 <div class="stat-box">
 
-                    <h2>18</h2>
+                    <h2>{{ critical_reports }}</h2>
 
                     <span>Critical Issues</span>
 
@@ -541,7 +613,7 @@ PROFILE DASHBOARD
 
                 <div class="stat-box">
 
-                    <h2>96%</h2>
+                    <h2>{{ resolved_rate }}%</h2>
 
                     <span>Resolved Rate</span>
 
@@ -611,94 +683,23 @@ PROFILE DASHBOARD
 
             <div class="activity-list">
 
-                <div class="activity-item">
+               {% for report in recent_reports %}
 
-                    <i class="fa-solid fa-cloud-arrow-up"></i>
+            <div class="activity-item">
 
-                    <div>
+                <i class="fa-solid fa-file-circle-check"></i>
 
-                        <h4>
+                <div>
 
-                            Uploaded Road Damage Report
+                    <h4>{{ report.issue_type }}</h4>
 
-                        </h4>
-
-                        <p>
-
-                            Today • 10:45 AM
-
-                        </p>
-
-                    </div>
+                    <p>{{ report.status }} • {{ report.created_at }}</p>
 
                 </div>
 
-                <div class="activity-item">
+            </div>
 
-                    <i class="fa-solid fa-robot"></i>
-
-                    <div>
-
-                        <h4>
-
-                            Gemini AI Completed Analysis
-
-                        </h4>
-
-                        <p>
-
-                            Today • 10:46 AM
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="activity-item">
-
-                    <i class="fa-solid fa-file-pdf"></i>
-
-                    <div>
-
-                        <h4>
-
-                            PDF Report Generated
-
-                        </h4>
-
-                        <p>
-
-                            Yesterday
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="activity-item">
-
-                    <i class="fa-solid fa-chart-line"></i>
-
-                    <div>
-
-                        <h4>
-
-                            Analytics Dashboard Visited
-
-                        </h4>
-
-                        <p>
-
-                            Yesterday
-
-                        </p>
-
-                    </div>
-
-                </div>
-
+            {% endfor %}
             </div>
 
         </div>
@@ -731,10 +732,99 @@ FOOTER
 
 </div>
 
-<!-- =====================================
-JAVASCRIPT
-===================================== -->
 
+<!-- =====================================================
+EDIT PROFILE MODAL
+===================================================== -->
+
+<div id="editProfileModal" class="edit-profile-modal">
+
+    <div class="edit-profile-content">
+
+        <h2>Edit Profile</h2>
+
+        <form
+            action="{{ url_for('update_profile') }}"
+            method="POST"
+            class="edit-profile-form">
+
+            <input type="text"
+                   name="full_name"
+                   placeholder="Full Name"
+                   value="{{ user.full_name }}"
+                   required>
+
+            <input type="email"
+                   name="email"
+                   placeholder="Email"
+                   value="{{ user.email }}"
+                   required>
+
+            <input type="text"
+                   name="phone"
+                   placeholder="Phone"
+                   value="{{ user.phone }}">
+
+            <input type="text"
+                   name="location"
+                   placeholder="Location"
+                   value="{{ user.location }}">
+
+            <input type="text"
+                   name="role"
+                   placeholder="Role"
+                   value="{{ user.role }}">
+
+            <input type="text"
+                   name="education"
+                   placeholder="Education"
+                   value="{{ user.education }}">
+
+            <input type="text"
+                   name="university"
+                   placeholder="University"
+                   value="{{ user.university }}">
+
+            <input type="text"
+                   name="skills"
+                   placeholder="Skills"
+                   value="{{ user.skills }}">
+
+            <textarea
+                name="bio"
+                rows="5"
+                placeholder="Bio">{{ user.bio }}</textarea>
+
+            <br><br>
+
+            <div class="edit-profile-actions">
+
+                <button
+                    type="button"
+                    class="cancel-profile-btn"
+                    id="closeProfileModal">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    type="submit"
+                    class="save-profile-btn">
+
+                    Save Changes
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- Profile JS -->
 <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
 
 </body>

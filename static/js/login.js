@@ -33,13 +33,14 @@ const form = document.getElementById("loginForm");
 const loginBtn = document.querySelector(".login-btn");
 
 form.addEventListener("submit", function (e) {
-
-    e.preventDefault();
+    
 
     const email = document.getElementById("email").value.trim();
     const pass = password.value.trim();
 
     if (email === "" || pass === "") {
+
+        e.preventDefault();
 
         alert("Please fill all fields.");
 
@@ -52,13 +53,9 @@ form.addEventListener("submit", function (e) {
 
     loginBtn.disabled = true;
 
-    setTimeout(() => {
-
-        window.location.href = "/home";
-
-    }, 1800);
-
 });
+
+
 
 // ======================================
 // Input Glow

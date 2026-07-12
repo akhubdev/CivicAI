@@ -73,7 +73,7 @@ if(profileBtn){
 
     profileBtn.addEventListener("click",()=>{
 
-        alert("Profile page coming soon.");
+        window.location.href = "/profile";
 
     });
 

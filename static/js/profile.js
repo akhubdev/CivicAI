@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", () => {
 
 
 // =====================================================
@@ -47,6 +48,18 @@ document.querySelector(".activity-card");
 const editButton =
 
 document.querySelector(".edit-profile-btn");
+
+const editProfileModal =
+document.getElementById("editProfileModal");
+
+console.log(editProfileModal);
+console.log(document.getElementById("editProfileModal"));
+
+const closeProfileModal =
+document.getElementById("closeProfileModal");
+
+const cancelProfileBtn =
+document.querySelector(".cancel-profile-btn");
 
 // ======================================
 // REVEAL ANIMATION
@@ -117,37 +130,47 @@ revealItems.forEach((card)=>{
 // EDIT PROFILE BUTTON
 // =====================================================
 
-if(editButton){
+if (editButton) {
 
-    editButton.addEventListener("click",()=>{
+    editButton.addEventListener("click", () => {
 
-        editButton.innerHTML=
+        console.log("Edit Button Clicked");
 
-        `<i class="fa-solid fa-spinner fa-spin"></i>
-        Opening...`;
-
-        editButton.disabled=true;
-
-        setTimeout(()=>{
-
-            editButton.innerHTML=
-
-            `<i class="fa-solid fa-pen"></i>
-            Edit Profile`;
-
-            editButton.disabled=false;
-
-            showToast(
-
-            "Profile editing feature coming soon."
-
-            );
-
-        },1200);
+        editProfileModal.style.display = "flex";
 
     });
 
 }
+
+if (closeProfileModal) {
+
+    closeProfileModal.addEventListener("click", () => {
+
+        editProfileModal.style.display = "none";
+
+    });
+
+}
+
+if (cancelProfileBtn) {
+
+    cancelProfileBtn.addEventListener("click", () => {
+
+        editProfileModal.style.display = "none";
+
+    });
+
+}
+
+window.addEventListener("click", (e) => {
+
+    if (e.target === editProfileModal) {
+
+        editProfileModal.style.display = "none";
+
+    }
+
+});
 
 // =====================================================
 // AI STATISTICS COUNTER
@@ -529,12 +552,6 @@ document.addEventListener("keydown",(e)=>{
 
             break;
 
-        case "s":
-
-            window.location.href="/settings";
-
-            break;
-
         case "p":
 
             window.location.href="/profile";
@@ -625,6 +642,63 @@ console.log(
 
 );
 
+
+
+const avatarInput = document.getElementById("avatarInput");
+const changeAvatarBtn = document.getElementById("changeAvatarBtn");
+const avatarForm = document.getElementById("avatarForm");
+/* const profileImage = document.getElementById("profileImage"); */
+
+if (changeAvatarBtn) {
+
+    changeAvatarBtn.addEventListener("click", () => {
+        avatarInput.click();
+    });
+
+    avatarInput.addEventListener("change", () => {
+    if (avatarInput.files.length > 0) {
+        avatarForm.submit();
+    }
+});
+
+}
+
+
+
+
+// =====================================
+// Notification Dropdown
+// =====================================
+
+const notificationBtn = document.getElementById("notificationBtn");
+const notificationDropdown = document.getElementById("notificationDropdown");
+
+if (notificationBtn && notificationDropdown) {
+
+    notificationBtn.addEventListener("click", (e) => {
+
+        e.stopPropagation();
+
+        notificationDropdown.classList.toggle("show");
+
+    });
+
+    notificationDropdown.addEventListener("click", (e) => {
+
+        e.stopPropagation();
+
+    });
+
+    document.addEventListener("click", () => {
+
+        notificationDropdown.classList.remove("show");
+
+    });
+
+}
+
+
 // =====================================================
 // END OF PROFILE JS
 // =====================================================
+});

@@ -442,8 +442,6 @@ y:{
 
 beginAtZero:true,
 
-max:100,
-
 ticks:{
 
 color:"#CBD5E1"

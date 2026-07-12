@@ -6,6 +6,7 @@
 # =====================================================
 
 import os
+import uuid
 import sqlite3
 from datetime import datetime
 
@@ -22,6 +23,7 @@ from flask import (
 )
 
 from werkzeug.utils import secure_filename
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from dotenv import load_dotenv
 
@@ -74,6 +76,15 @@ app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 os.makedirs(
     UPLOAD_FOLDER,
+    exist_ok=True
+)
+
+PROFILE_FOLDER = "static/profile_images"
+
+app.config["PROFILE_FOLDER"] = PROFILE_FOLDER
+
+os.makedirs(
+    PROFILE_FOLDER,
     exist_ok=True
 )
 
@@ -144,7 +155,7 @@ def init_db():
 
     """)
 
-    # ----------------------------------------
+# ----------------------------------------
 # Database Upgrade (Safe)
 # ----------------------------------------
 
@@ -167,6 +178,213 @@ def init_db():
         cursor.execute("""
             ALTER TABLE reports
             ADD COLUMN resolved_at TEXT
+        """)
+    
+    if "latitude" not in columns:
+        cursor.execute("""
+            ALTER TABLE reports
+            ADD COLUMN latitude REAL DEFAULT 0
+        """)
+
+    if "longitude" not in columns:
+        cursor.execute("""
+            ALTER TABLE reports
+            ADD COLUMN longitude REAL DEFAULT 0
+        """)
+        
+# =====================================================
+#           USERS TABLE
+# =====================================================
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS users(
+
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+        full_name TEXT,
+        email TEXT UNIQUE,
+        phone TEXT,
+
+        role TEXT,
+        education TEXT,
+        university TEXT,
+
+        location TEXT,
+
+        bio TEXT,
+
+        skills TEXT,
+
+        experience TEXT,
+                   
+        password TEXT,
+
+        avatar TEXT,
+
+        joined_date TEXT
+
+    )
+    """)
+
+# ----------------------------------------
+# USERS TABLE UPGRADE (Safe)
+# ----------------------------------------
+
+    cursor.execute("PRAGMA table_info(users)")
+    user_columns = [column[1] for column in cursor.fetchall()]
+
+    if "password" not in user_columns:
+        cursor.execute("""
+            ALTER TABLE users
+            ADD COLUMN password TEXT
+        """)
+
+    if "joined_date" not in user_columns:
+        cursor.execute("""
+            ALTER TABLE users
+            ADD COLUMN joined_date TEXT
+        """)
+
+# ----------------------------------------
+# DEFAULT PASSWORD UPGRADE (Safe)
+# ----------------------------------------
+
+    cursor.execute("SELECT id, password FROM users")
+
+    for row in cursor.fetchall():
+
+        if row[1] is None or row[1] == "":
+
+            cursor.execute(
+                "UPDATE users SET password=? WHERE id=?",
+                (
+                    generate_password_hash("admin123"),
+                    row[0]
+                )
+            )
+
+
+# =====================================================
+# NOTIFICATIONS TABLE
+# =====================================================
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS notifications(
+
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+        user_id INTEGER,
+
+        title TEXT,
+
+        message TEXT,
+
+        type TEXT DEFAULT 'info',
+
+        is_read INTEGER DEFAULT 0,
+
+        created_at TEXT DEFAULT CURRENT_TIMESTAMP
+
+    )
+    """)
+
+# =====================================================
+# USER SETTINGS TABLE
+# =====================================================
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS user_settings(
+
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+        user_id INTEGER UNIQUE,
+
+        language TEXT DEFAULT 'English',
+
+        timezone TEXT DEFAULT 'Asia/Kolkata',
+
+        date_format TEXT DEFAULT 'DD-MM-YYYY',
+
+        dark_theme INTEGER DEFAULT 1,
+
+        glass_effect INTEGER DEFAULT 1,
+
+        animations INTEGER DEFAULT 1,
+
+        auto_ai INTEGER DEFAULT 1,
+
+        high_accuracy INTEGER DEFAULT 1,
+
+        ai_model TEXT DEFAULT 'Gemini 2.5 Flash',
+
+        email_notifications INTEGER DEFAULT 1,
+
+        browser_notifications INTEGER DEFAULT 0,
+
+        critical_alerts INTEGER DEFAULT 1,
+
+        two_factor INTEGER DEFAULT 0,
+
+        save_session INTEGER DEFAULT 1,
+
+        anonymous_analytics INTEGER DEFAULT 0,
+
+        export_format TEXT DEFAULT 'PDF',
+
+        report_quality TEXT DEFAULT 'High',
+
+        FOREIGN KEY(user_id) REFERENCES users(id)
+
+    )
+    """)
+
+# =====================================================
+# DEFAULT USER
+# =====================================================
+
+    cursor.execute("SELECT COUNT(*) FROM users")
+
+    if cursor.fetchone()[0] == 0:
+        
+        cursor.execute("""
+            INSERT INTO users(
+            full_name,
+            email,
+            phone,
+            role,
+            education,
+            university,
+            location,
+            bio,
+            skills,
+            experience,
+            password,
+            avatar,
+            joined_date
+            )
+            VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)
+        """, (
+
+            "Akash Das",
+            "akash@example.com",
+            "+91 XXXXX XXXXX",
+            "AI & Data Analyst",
+            "B.Tech CSE",
+            "BPUT Odisha",
+            "Angul, Odisha",
+            "Passionate about Artificial Intelligence, Machine Learning, Data Analytics and Smart City Solutions.",
+            "Python, Flask, SQL, SQLite, Machine Learning, HTML5, CSS3, JavaScript",
+            "Fresher",
+            generate_password_hash("admin123"),
+            "",
+            "June 2026"
+        ))
+
+        cursor.execute("""
+            INSERT OR IGNORE INTO user_settings(
+            user_id
+            )
+            VALUES(1)
         """)
 
     conn.commit()
@@ -529,32 +747,130 @@ def create_pdf(data):
 
     return pdf_path
 
-    # =====================================================
-# BASIC ROUTES
+# =====================================================
+#  LOGIN ROUTE
 # =====================================================
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def login():
+
+    if request.method == "POST":
+
+        email = request.form["email"]
+        password = request.form["password"]
+
+        conn = get_db()
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+
+        cursor.execute(
+            "SELECT * FROM users WHERE email=?",
+            (email,)
+        )
+
+        user = cursor.fetchone()
+        conn.close()
+
+        if user and check_password_hash(user["password"], password):
+
+            session["user_id"] = user["id"]
+
+            session["user_id"] = user["id"]
+
+            print("LOGIN USER ID =", session["user_id"])
+
+            return redirect(url_for("home"))
+
+        flash("Invalid Email or Password")
 
     return render_template("login.html")
 
+# ====================
+#  REGISTER ROUTE
+# ====================
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+
+    if request.method == "POST":
+
+        full_name = request.form["full_name"].strip()
+        email = request.form["email"].strip()
+        password = request.form["password"]
+        confirm_password = request.form["confirm_password"]
+
+        if password != confirm_password:
+
+            flash("Passwords do not match.")
+            return redirect(url_for("register"))
+
+        conn = get_db()
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+
+        cursor.execute(
+            "SELECT id FROM users WHERE email=?",
+            (email,)
+        )
+
+        existing_user = cursor.fetchone()
+
+        if existing_user:
+
+            conn.close()
+            flash("Email already registered.")
+            return redirect(url_for("register"))
+
+        cursor.execute("""
+            INSERT INTO users(
+                full_name,
+                email,
+                password
+            )
+            VALUES(?,?,?)
+        """, (
+
+            full_name,
+            email,
+            generate_password_hash(password)
+
+        ))
+        cursor.execute("""
+            INSERT OR IGNORE INTO user_settings(user_id)
+            VALUES(?)
+        """, (cursor.lastrowid,))
+
+        conn.commit()
+        conn.close()
+
+        flash("Account created successfully. Please login.")
+
+        return redirect(url_for("login"))
+
+    return render_template("register.html")
+
+# ===========
+#  HOME
+# ===========
 
 @app.route("/home")
 def home():
 
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
     return render_template("home.html")
 
-
+# ============
+#  UPLOAD
+# ============
 @app.route("/upload")
 def upload():
 
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
     return render_template("upload.html")
-
-
-@app.route("/loading")
-def loading():
-
-    return render_template("loading.html")
 
 
 # =====================================================
@@ -563,6 +879,9 @@ def loading():
 
 @app.route("/dashboard")
 def dashboard():
+
+    if "user_id" not in session:
+        return redirect(url_for("login"))
 
     conn = get_db()
 
@@ -641,16 +960,10 @@ def dashboard():
     recent_reports = cursor.fetchall()
 
     cursor.execute("""
-
-    SELECT issue_type,
-           created_at
-
-    FROM reports
-
-    ORDER BY id DESC
-
-    LIMIT 4
-
+        SELECT issue_type, status, created_at
+        FROM reports
+        ORDER BY id DESC
+        LIMIT 4
     """)
 
     recent_activity = cursor.fetchall()
@@ -660,9 +973,9 @@ def dashboard():
 # -------------------------------
 
     cursor.execute("""
-    SELECT severity, COUNT(*) as total
-    FROM reports
-    GROUP BY severity
+        SELECT severity, COUNT(*) AS total
+        FROM reports
+        GROUP BY severity
     """)
 
     chart_data = cursor.fetchall()
@@ -697,8 +1010,15 @@ def dashboard():
 
     )
 
+# ==================
+#  History
+# ==================
+
 @app.route("/history")
 def history():
+
+    if "user_id" not in session:
+        return redirect(url_for("login"))
 
     conn = get_db()
     conn.row_factory = sqlite3.Row
@@ -759,24 +1079,217 @@ def history():
     )
 
 
-# ==========================================
+# ============================================================
 # PROFILE PAGE
-# ==========================================
+# ============================================================
 
 @app.route("/profile")
 def profile():
-    return render_template("profile.html")
+
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    conn = get_db()
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "SELECT * FROM users WHERE id=?",
+        (session["user_id"],)
+    )
+    user = cursor.fetchone()
+
+    cursor.execute("""
+        SELECT *
+        FROM reports
+        ORDER BY id DESC
+        LIMIT 4
+    """)
+
+    recent_reports = cursor.fetchall()
+
+    cursor.execute("""
+    SELECT title, message, created_at
+        FROM notifications
+        WHERE user_id = ?
+        ORDER BY id DESC
+        LIMIT 5
+    """, (session["user_id"],))
+
+    notifications = cursor.fetchall()
+
+    print(recent_reports)
+# ==============================
+# Dashboard Statistics
+# ==============================
+
+    cursor.execute("SELECT COUNT(*) FROM reports")
+    total_reports = cursor.fetchone()[0]
+
+    cursor.execute("SELECT COUNT(*) FROM reports WHERE severity='Critical'")
+    critical_reports = cursor.fetchone()[0]
+
+    resolved_rate = 96
+    ai_accuracy = 94
+
+    # ===========================
+    # Profile Completion
+    # ===========================
+
+    profile_fields = [
+        user["full_name"],
+        user["email"],
+        user["phone"],
+        user["location"],
+        user["role"],
+        user["education"],
+        user["skills"],
+        user["bio"]
+    ]
+
+    filled_fields = sum(
+        1 for field in profile_fields
+        if field and str(field).strip()
+    )
+
+    profile_completion = int(
+        (filled_fields / len(profile_fields)) * 100
+    )
+
+    avatar = "images/avatar.png"
+
+    if user["avatar"]:
+        avatar = "profile_images/" + user["avatar"]
+
+    skills = user
+    conn.close()
+
+    return render_template(
+        "profile.html",
+        user=user,
+        avatar=avatar,
+        profile_completion=profile_completion,
+        skills=skills["skills"] if user["skills"] else "",
+        total_reports=total_reports,
+        critical_reports=critical_reports,
+        resolved_rate=resolved_rate,
+        ai_accuracy=ai_accuracy,
+        notifications=notifications,
+        recent_reports=recent_reports
+    )
+
+#=================================
+#  Update Profile
+#=================================
+
+@app.route("/update_profile", methods=["POST"])
+def update_profile():
+
+    conn = get_db()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        UPDATE users
+        SET
+            full_name=?,
+            email=?,
+            phone=?,
+            location=?,
+            role=?,
+            education=?,
+            university=?,
+            skills=?,
+            bio=?
+            WHERE id=?
+    """, (
+
+        request.form["full_name"],
+        request.form["email"],
+        request.form["phone"],
+        request.form["location"],
+        request.form["role"],
+        request.form["education"],
+        request.form["university"],
+        request.form["skills"],
+        request.form["bio"],
+        session["user_id"]
+
+    ))
+
+    cursor.execute("""
+    INSERT INTO notifications (
+        user_id,
+        title,
+        message,
+        type,
+        created_at
+    )
+    VALUES (?, ?, ?, ?, datetime('now','localtime'))
+    """, (
+        session["user_id"],
+        "Profile Updated",
+        "Your profile was updated successfully.",
+        "success"
+    ))
 
 
-# ==========================================
-# SETTINGS PAGE
-# ==========================================
+    conn.commit()
+    conn.close()
 
-@app.route("/settings")
-def settings():
-    return render_template("settings.html")
+    flash("Profile updated successfully!")
+
+    return redirect(url_for("profile"))
 
 
+# ================
+#  Upload Avtar 
+# ================
+
+@app.route("/upload_avatar", methods=["POST"])
+def upload_avatar():
+
+    if "avatar" not in request.files:
+        flash("No image selected")
+        return redirect(url_for("profile"))
+
+    file = request.files["avatar"]
+
+    if file.filename == "":
+        flash("No image selected")
+        return redirect(url_for("profile"))
+
+    if not allowed_file(file.filename):
+        flash("Invalid image")
+        return redirect(url_for("profile"))
+
+    ext = file.filename.rsplit(".",1)[1].lower()
+
+    filename = f"{uuid.uuid4()}.{ext}"
+
+    file.save(
+        os.path.join(
+            app.config["PROFILE_FOLDER"],
+            filename
+        )
+    )
+
+    conn = get_db()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "UPDATE users SET avatar=? WHERE id=?",
+        (
+            filename,
+            session["user_id"]
+        )
+    )
+
+    conn.commit()
+    conn.close()
+
+    flash("Avatar Updated")
+
+    return redirect(url_for("profile"))
 
 
 # ==========================================
@@ -785,6 +1298,9 @@ def settings():
 
 @app.route("/analytics")
 def analytics():
+
+    if "user_id" not in session:
+        return redirect(url_for("login"))
 
     conn = get_db()
     conn.row_factory = sqlite3.Row
@@ -875,6 +1391,9 @@ def analytics():
         monthly_counts=monthly_counts
     )
 
+# =============================
+#  Report 
+# ==============================
 
 @app.route("/report/<int:report_id>")
 def report(report_id):
@@ -938,6 +1457,10 @@ def report(report_id):
         estimated_resolution="24-48 Hours"
     )
 
+# ===============================
+#  PDF Wownload
+# ===============================
+
 @app.route("/download_pdf")
 def download_pdf():
 
@@ -970,6 +1493,10 @@ def download_pdf():
     )
 
 
+
+# =======================
+#  LOGOUT
+# =======================
 @app.route("/logout")
 def logout():
 
@@ -1278,14 +1805,75 @@ def delete_report(report_id):
 
     )
 
+# ========================
+#     Smart Maps
+# =========================
+
+@app.route("/smart-maps")
+def smart_maps():
+
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    conn = get_db()
+    conn.row_factory = sqlite3.Row
+
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT
+            id,
+            issue_type,
+            severity,
+            location,
+            latitude,
+            longitude,
+            priority,
+            department,
+            confidence,
+            status,
+            created_at
+        FROM reports
+        ORDER BY id DESC
+    """)
+
+    reports = cursor.fetchall()
+    reports = [dict(report) for report in reports]
+
+    conn.close()
+
+    return render_template(
+        "smart_maps.html",
+        reports=reports
+    )
+
+# =====================
+#  Temporary root
+# =====================
+@app.route("/test")
+def test():
+    import os
+
+    return {
+        "static_folder": app.static_folder,
+        "exists": os.path.exists(os.path.join(app.static_folder, "images", "avatar.png")),
+        "path": os.path.join(app.static_folder, "images", "avatar.png")
+    }
 
 # =====================================================
 # RUN APPLICATION
 # =====================================================
 
 if __name__ == "__main__":
+
+    print("=" * 50)
+    print("ROOT PATH :", app.root_path)
+    print("STATIC FOLDER :", app.static_folder)
+    print("TEMPLATE FOLDER :", app.template_folder)
+    print("=" * 50)
+
     app.run(
         host="0.0.0.0",
         port=int(os.environ.get("PORT", 5000)),
-        debug=False
+        debug=True
     )
