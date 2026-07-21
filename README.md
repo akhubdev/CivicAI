@@ -69,7 +69,8 @@ Developed during the
 
 # **Vibe2Ship Hackathon**
 
-> 🏅 **Hackathon participation certificate will be added soon.**
+> 🏅 **Hackathon participation certificate.**
+> ![Hackathon Certificate](./screenshots/Vibe2certificate_Akash_Das.png)
 
 ---
 
