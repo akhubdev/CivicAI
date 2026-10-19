@@ -1,26 +1,24 @@
+
 <div align="center">
 
-# 🚀 CivicAI
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0F766E,50:0891B2,100:164E63&height=220&section=header&text=CivicAI&fontSize=65&fontColor=FFFFFF&fontAlignY=38&desc=AI-Powered%20Community%20Issue%20Intelligence%20Platform&descAlignY=60&descSize=17&animation=fadeIn" width="100%" />
 
-### AI-Powered Community Issue Intelligence Platform
+### 🌍 Built for Smarter Communities
 
-Built during the **Coding Ninjas × Google for Developers – Vibe2Ship Hackathon**
+**Coding Ninjas × Google for Developers — Vibe2Ship Hackathon**
 
-<p align="center">
+[![Python](https://img.shields.io/badge/Python-0F766E?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-164E63?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![Gemini AI](https://img.shields.io/badge/Gemini_AI-0891B2?style=for-the-badge&logo=googlegemini&logoColor=white)](https://ai.google.dev/)
+[![SQLite](https://img.shields.io/badge/SQLite-155E75?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
+[![Render](https://img.shields.io/badge/Live_Demo-0F766E?style=for-the-badge&logo=render&logoColor=white)](https://civicai-4kqm.onrender.com)
 
-<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
-<img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white">
-<img src="https://img.shields.io/badge/Google-Gemini_AI-4285F4?style=for-the-badge&logo=google&logoColor=white">
-<img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white">
-<img src="https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white">
-
-</p>
-
-### 🌐 Live Demo
-
-https://civicai-4kqm.onrender.com
+### 🔗 [Explore Live Demo](https://civicai-4kqm.onrender.com)
 
 </div>
+
+---
+
 
 ---
 
@@ -152,26 +150,20 @@ python app.py
 
 ---
 
-# 👨‍💻 Developer
 
-## Akash Das
 
-**Data Analyst • Python Developer • AI & Machine Learning Enthusiast**
 
-**GitHub**  
-https://github.com/akhubdev
-
-**LinkedIn**  
-https://linkedin.com/in/akashdastech
-
----
 
 <div align="center">
 
-## ⭐ If you found this project helpful,
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0F766E,50:0891B2,100:164E63&height=180&section=footer&text=THANK%20YOU%20FOR%20VISITING!&fontSize=28&fontColor=FFFFFF&fontAlignY=65" width="100%" alt="Thank You for Visiting"/>
 
-### Consider giving it a Star ⭐
+<p><strong>Made with ❤️ by Akash Das</strong></p>
 
-Made with ❤️ by **Akash Das**
+<p>
+<a href="https://github.com/akhubdev">GitHub</a> •
+<a href="https://www.linkedin.com/in/akashdastech">LinkedIn</a>
+</p>
 
 </div>
+
